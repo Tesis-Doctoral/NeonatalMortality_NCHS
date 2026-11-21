@@ -1,0 +1,16 @@
+Data adapter: birth cohorts built from the NCHS Period/Cohort Linked Birth/Infant Death public-use files (aggregate counts only)
+pop = live births to US-resident mothers with combined gestation 22-47 weeks; main label = neonatal death at 0-27 days
+
+cohort                        2016     2017     2018     2019     2020     2021     2022     2023
+births                     3956112  3864754  3801534  3757582  3619826  3669928  3676029  3605081
+births_us_resident         3945875  3855500  3791712  3747540  3613647  3664292  3667758  3596017
+infant_deaths_linked         22893    22167    21346    20639    19346    19965    20268    19743
+ga_unknown                    3457     2760     2509     2407     2478     2993     2671     2642
+ga_lt22                       4130     4182     3960     3946     3690     3537     3563     3549
+pop_ge22wk                 3938288  3848558  3785243  3741187  3607479  3657762  3661524  3589826
+events_main_pop              11497    11057    10703    10249     9574     9633     9967     9879
+events_first24h_pop           5107     5356     5161     5136     4823     4556     4697     4620
+events_day1_27_pop            6390     5701     5542     5113     4751     5077     5270     5259
+events_early_neonatal_pop     8605     8222     7998     7605     7110     6988     7148     7089
+pop_ge28wk                 3914482  3825287  3762869  3718587  3586692  3636328  3640382  3569019
+events_main_ge28              5850     5741     5655     5439     5164     5232     5517     5499
