@@ -1,6 +1,6 @@
 # Neonatal mortality with NCHS data
 
-> **Framework.** This repository applies the thesis's staged framework for clinical prediction models. The framework (stages, gates, criteria and literature) and the catalogue of models with their status are in [StagedFramework_ClinicalPrediction](https://github.com/khem777/StagedFramework_ClinicalPrediction).
+> **Framework.** This repository applies the thesis's staged framework for clinical prediction models. The framework (stages, gates, criteria and literature) and the catalogue of models with their status are in [StagedFramework_ClinicalPrediction](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction).
 
 Can live births at high risk of dying in their first 28 days be identified at birth? This model uses the public-use linked birth/infant death files of the National Center for Health Statistics (NCHS, CDC) and follows the staged framework for clinical prediction models.
 

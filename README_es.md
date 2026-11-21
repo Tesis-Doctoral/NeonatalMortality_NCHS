@@ -1,6 +1,6 @@
 # Mortalidad neonatal con datos NCHS
 
-> **Framework.** Este repositorio aplica el framework por etapas para modelos de predicción clínica de la tesis. El framework (etapas, puertas, criterios y literatura) y el catálogo de modelos con su estado están en [StagedFramework_ClinicalPrediction](https://github.com/khem777/StagedFramework_ClinicalPrediction).
+> **Framework.** Este repositorio aplica el framework por etapas para modelos de predicción clínica de la tesis. El framework (etapas, puertas, criterios y literatura) y el catálogo de modelos con su estado están en [StagedFramework_ClinicalPrediction](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction).
 
 ¿Se puede identificar, al nacer, a los nacidos vivos con riesgo alto de morir en sus primeros 28 días? Este modelo usa los archivos públicos de nacimientos vinculados con defunciones infantiles del National Center for Health Statistics (NCHS, CDC) y sigue el framework por etapas para modelos de predicción clínica.
 
