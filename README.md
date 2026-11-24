@@ -4,7 +4,7 @@
 
 Can live births at high risk of dying in their first 28 days be identified at birth? This model uses the public-use linked birth/infant death files of the National Center for Health Statistics (NCHS, CDC) and follows the staged framework for clinical prediction models.
 
-> **Status (2026-11-23): classified at G4 as predictor under framework 1.3** (XGBoost, AUROC 0.964; at 48 hours 0.932; temporal 0.961; [`data/outputs_05_main_evaluation.txt`](data/outputs_05_main_evaluation.txt), [`data/outputs_05b_g4_framework_1_3.txt`](data/outputs_05b_g4_framework_1_3.txt)). Under framework 1.2 it was an early identifier ([`docs/decision_G4_C1_2026-11-23.md`](docs/decision_G4_C1_2026-11-23.md)). The 8 birth cohorts (2016–2023) are built, with 100% of infant deaths joined to their birth ([`data/outputs_01_build_cohorts.txt`](data/outputs_01_build_cohorts.txt)); 82,559 neonatal deaths in 29.8 million live births ([`data/outputs_02_count_audit.txt`](data/outputs_02_count_audit.txt)). Predictors fixed (71 parameters) and gates G2 and G3 passed ([`data/outputs_03_predictors_g2_g3.txt`](data/outputs_03_predictors_g2_g3.txt)). Preliminary run: XGBoost is the primary learner (AUROC 0.964; [`data/outputs_04_preliminary_learners.txt`](data/outputs_04_preliminary_learners.txt)). Next: report (S10–S11).
+> **Status (2026-11-23): classified at G4 as predictor under framework 1.3** (XGBoost, AUROC 0.964; at 48 hours 0.932; temporal 0.961; [`data/outputs_05_main_evaluation.txt`](data/outputs_05_main_evaluation.txt), [`data/outputs_05b_g4_framework_1_3.txt`](data/outputs_05b_g4_framework_1_3.txt)). Under framework 1.2 it was an early identifier ([`docs/decision_G4_C1_2026-11-23.md`](docs/decision_G4_C1_2026-11-23.md)). The 8 birth cohorts (2016–2023) are built, with 100% of infant deaths joined to their birth ([`data/outputs_01_build_cohorts.txt`](data/outputs_01_build_cohorts.txt)); 82,559 neonatal deaths in 29.8 million live births ([`data/outputs_02_count_audit.txt`](data/outputs_02_count_audit.txt)). Predictors fixed (71 parameters) and gates G2 and G3 passed ([`data/outputs_03_predictors_g2_g3.txt`](data/outputs_03_predictors_g2_g3.txt)). Preliminary run: XGBoost is the primary learner (AUROC 0.964; [`data/outputs_04_preliminary_learners.txt`](data/outputs_04_preliminary_learners.txt)). S10 done ([`docs/e10_action_neonatal.md`](docs/e10_action_neonatal.md)). Next: report (S11).
 
 [Versión en español](README_es.md)
 
@@ -29,6 +29,7 @@ The *Period/Cohort Linked Birth/Infant Death* files are downloaded from https://
 | 4 | `notebooks/04_preliminary_learners.ipynb` | `data/outputs_04_preliminary_learners.txt` and `data/outputs_04_selection.json` | S8 (preliminary run, primary-learner rule) |
 | 5 | `notebooks/05_main_evaluation.ipynb` | `data/outputs_05_main_evaluation.txt` | S8–S9 (formal evaluation, temporal validation, sensitivities), G4 |
 | 5b | `scripts/g4_framework_1_3.py` | `data/outputs_05b_g4_framework_1_3.txt` | G4 under framework 1.3 (no refit; reads the output of 05) |
+| 6 | `notebooks/06_e10_action.ipynb` | `data/outputs_06_e10_action.txt` | S10 (workload, subgroups, drivers of risk) |
 
 The reader is `libraries/nchs_reader.py`: it reads the fixed-width files directly from the ZIP files, with the positions of the record layout of the user guides (identical from 2016 to 2023).
 
