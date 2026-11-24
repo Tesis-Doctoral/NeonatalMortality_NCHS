@@ -18,8 +18,8 @@ La mortalidad neonatal comprende, según la OMS, las muertes de nacidos vivos du
 | Unidad y grupo | Nacido vivo. Los archivos públicos no traen identificador de la madre, así que el grupo es el propio nacimiento (`group_id = unit_id`). Los nacidos de un mismo parto múltiple no se pueden unir; es una limitación declarada |
 | Población | Nacidos vivos de madres residentes en EE. UU. (`RESTATUS` 1–3) con edad gestacional de **22 semanas o más** (`COMBGEST` 22–47), límite inferior de viabilidad usado por la OMS. Edad gestacional desconocida (`99`): excluida, y se reporta cuántas son |
 | Etiqueta principal | Muerte entre el día 0 y el día 27 de vida |
-| Etiquetas de sensibilidad | (a) Muerte entre el día 1 y el día 27 entre quienes sobreviven las primeras 24 horas (punto de referencia a las 24 h); (b) muerte neonatal precoz, de 0 a 6 días; (c) etiqueta principal en la población de 28 semanas o más |
-| Conteos | **Pendiente**: se fijan en la auditoría de conteos (E4) |
+| Etiquetas de sensibilidad | (a) Muerte entre los días 2 y 27 en quienes están vivos al comenzar el día 2 (punto de referencia a las 48 h; originalmente 24 horas, cambiado por M4-D1, sección 8); (b) muerte neonatal precoz, de 0 a 6 días; (c) etiqueta principal en la población de 28 semanas o más |
+| Conteos | Auditoría de conteos, notebook 02 (23/11/2026): 29.829.867 nacidos vivos en 8 cohortes (de 3,59 a 3,94 millones cada una); 82.559 muertes neonatales (de 9.574 a 11.497 por cohorte): 62.713 en desarrollo (2016–2021) y 19.846 en la prueba temporal (2022–2023). El 46,6% de las muertes ocurre en el 0,59% de los nacimientos de 22 a 27 semanas. La puerta P1 pasa |
 
 ## 3. Punto de predicción y ventana de información (E6)
 
@@ -33,7 +33,7 @@ La mortalidad neonatal comprende, según la OMS, las muertes de nacidos vivos du
 
 ## 4. Predictores (E7)
 
-**Pendiente**: la lista definitiva se fija con la auditoría de conteos (frecuencias y faltantes en toda la población, nunca separadas por desenlace). Bloques candidatos:
+**Fijados el 23/11/2026** con la auditoría de conteos (frecuencias y faltantes en toda la población, nunca separadas por desenlace): **71 parámetros** de los bloques de abajo, sin el estado civil (M4-D2); lista completa en `data/outputs_03_predictors_g2_g3.txt`. Bloques:
 
 | Bloque | Candidatos |
 |---|---|
@@ -49,16 +49,16 @@ La mortalidad neonatal comprende, según la OMS, las muertes de nacidos vivos du
 
 | Campo | Valor |
 |---|---|
-| Eventos | Del orden de miles por cohorte; **pendiente** de la auditoría. La puerta P3 se verifica igual con los criterios de Riley et al. |
-| Modelo principal | Se fija en E8 con la regla del framework según los eventos por parámetro; modelos de árboles y ensamble como comparaciones |
-| Valores faltantes | **Pendiente**: códigos "desconocido o no informado" (`9`, `99`, `U`) pasan a faltante; el tratamiento se decide con la auditoría |
+| Eventos | 62.713 en desarrollo (2016–2021) y 19.846 en la prueba temporal (2022–2023). P3 pasa con los criterios de Riley et al. en sus dos pasos (sección 8) |
+| Modelo principal | **XGBoost**, elegido en la corrida preliminar con la regla del framework (883 eventos por parámetro); LR y modelo de referencia como comparaciones |
+| Valores faltantes | Códigos "desconocido o no informado" (`9`, `99`, `U`) pasan a faltante; imputación por la mediana sin indicadores de faltante (M4-D3); registros completos como sensibilidad |
 | Volumen | Unos 3,6 millones de nacimientos por cohorte. El adaptador guarda solo las columnas necesarias en Parquet |
 
 ## 5b. Análisis de sensibilidad
 
 | Análisis | Pregunta |
 |---|---|
-| Punto de referencia a las 24 horas (etiqueta a) | ¿El resultado depende de las muertes en las primeras horas, muchas en nacimientos sin intención de reanimar? |
+| Punto de referencia a las 48 horas (etiqueta a; M4-D1) | ¿El resultado depende de las muertes en las primeras horas, muchas en nacimientos sin intención de reanimar? |
 | Población de 28 semanas o más (etiqueta c) | ¿El modelo discrimina cuando se quitan los nacimientos extremadamente prematuros? |
 | Muerte neonatal precoz de 0 a 6 días (etiqueta b) | ¿Cambia el resultado si solo se cuenta la primera semana? |
 | Modelo de referencia (edad gestacional y peso) | ¿Cuánto agrega el resto de la información? |
@@ -68,12 +68,12 @@ La mortalidad neonatal comprende, según la OMS, las muertes de nacidos vivos du
 
 | Criterio | Cómo se aplica | Estado |
 |---|---|---|
-| C1, eventos ya presentes | La muerte ocurre después del nacimiento por diseño. Las muertes en la primera hora pueden reflejar una situación ya irreversible al nacer; el punto de referencia a las 24 horas mide cuánto pesan | Aplica mediante la sensibilidad (a) |
+| C1, eventos ya presentes | La muerte ocurre después del nacimiento por diseño. Las muertes en la primera hora pueden reflejar una situación ya irreversible al nacer; el punto de referencia a las 48 horas (M4-D1) mide cuánto pesan | Aplica mediante la sensibilidad (a) |
 | C2, desenlace con tiempo | La edad al morir está en días; el evento es posterior al punto de predicción | Aplica |
 | C3, sesgo de detección | El desenlace sale del certificado de defunción, no de un examen. Las muertes no vinculadas (alrededor del 1%) quedan como sobrevivientes; se reporta la tasa de vinculación | No aplica; se declara la vinculación |
 | C4, estabilidad en el tiempo | Desarrollo con las cohortes 2016–2021 y prueba temporal con 2022–2023 | Aplica |
 
-**Dicho antes de los resultados.** Los modelos de mortalidad neonatal con edad gestacional, peso al nacer y Apgar suelen superar una AUROC de 0,85, en buena parte por los nacimientos muy prematuros. Por eso se fijan desde ahora el modelo de referencia, la población de 28 semanas o más y el punto de referencia a las 24 horas. El umbral de 0,75 del framework no se cambia.
+**Dicho antes de los resultados.** Los modelos de mortalidad neonatal con edad gestacional, peso al nacer y Apgar suelen superar una AUROC de 0,85, en buena parte por los nacimientos muy prematuros. Por eso se fijan desde ahora el modelo de referencia, la población de 28 semanas o más y el punto de referencia a las 24 horas (el punto de referencia pasó a 48 horas por M4-D1, después de la auditoría de conteos y antes de ajustar cualquier modelo). El umbral de 0,75 del framework no se cambia.
 
 ## 7. Datos y condiciones de uso
 
@@ -86,7 +86,23 @@ La mortalidad neonatal comprende, según la OMS, las muertes de nacidos vivos du
 
 1. ~~Descarga de las cohortes 2016–2023~~ (hecha).
 2. ~~Adaptador de datos~~ (hecho el 20/11/2026: `libraries/nchs_reader.py`, `notebooks/01_build_cohorts_es.ipynb`; 100% de las muertes unidas a su nacimiento).
-3. Auditoría de conteos (E4): población, eventos por etiqueta y cohorte, faltantes de cada candidato.
-4. Fijar predictores y faltantes; puerta P3; modelo y clasificación.
+3. ~~Auditoría de conteos (E4)~~ (hecha el 23/11/2026: `notebooks/02_count_audit_es.ipynb`, `data/outputs_02_count_audit.txt`). Hallazgos que requieren una decisión antes de fijar los predictores:
+   - **La edad al morir en el día 1 cambia de codificación entre cohortes.** Las muertes del día 1 bajan de 1.412 (2016) a 845 (2017), 802 (2018) y unas 430 desde 2019, mientras que las muertes desde el día 2 son estables. El punto de referencia a las 24 horas (sensibilidad a) no significaría lo mismo en desarrollo y en la prueba temporal.
+   - **El estado civil (`DMAR`) no se reporta en cerca del 12% de los nacimientos desde 2017** (0% en 2016): un estado dejó de informarlo. No es comparable entre cohortes y funciona como indicador del estado.
+   - **El intervalo desde el último embarazo (`ILP_R`)** es desconocido en el 11,6% (el 31% son primeros embarazos, una categoría válida). Todos los demás candidatos tienen 3% o menos de desconocidos.
+   - **Verificación de la puerta P2:** el número de campos desconocidos por sí solo da una AUROC de 0,577 (0,556 en 28 semanas o más). Todos los registros son certificados de nacimiento, así que no existe la señal del tipo de formulario del modelo perinatal, pero el manejo de los desconocidos debe fijarse antes de ajustar.
+   Decisiones tomadas con estos hallazgos, registradas el 23/11/2026 antes de ajustar cualquier modelo (validadas por Emmanuel Gutiérrez Jiménez; por confirmar con el director de la tesis):
+   - **M4-D1:** la sensibilidad (a) pasa de un punto de referencia a las 24 horas a uno a las **48 horas**: muerte entre los días 2 y 27 en los recién nacidos vivos al comenzar el día 2. Responde la misma pregunta para el criterio C1 y no depende del cambio de codificación del día 1.
+   - **M4-D2:** **se excluye el estado civil (`DMAR`)** de los candidatos.
+   - **M4-D3:** en el modelo principal los desconocidos se **imputan (mediana o moda de los datos de desarrollo) sin indicadores de faltante**; los registros completos son un análisis de sensibilidad.
+4. ~~Predictores, puertas P2 y P3~~ (hecho el 23/11/2026: `notebooks/03_predictors_g2_g3_es.ipynb`, `data/outputs_03_predictors_g2_g3.txt`). 71 parámetros conocidos al nacer + 5 minutos. P2 pasa las verificaciones de diseño; el número de campos desconocidos por sí solo da una AUROC de 0,601 en las cohortes de desarrollo (0,571 en 28 semanas o más), que el modelo principal no ve (M4-D3), y los registros completos siguen como análisis de sensibilidad. P3 pasa en los dos pasos: desarrollo con 22.578.517 nacimientos y 62.713 eventos (883 por parámetro); R² de Cox-Snell observado 0,0201 (53% de su máximo); se requieren 37.427 nacimientos y 104 eventos. Modelo de referencia (edad gestacional + peso): R² 0,0142 (38% de su máximo).
+5. ~~Corrida preliminar (E8)~~ (hecha el 23/11/2026: `notebooks/04_preliminary_learners_es.ipynb`, `data/outputs_04_preliminary_learners.txt`). AUROC en la parte de comparación (12.543 eventos): LR 0,958, RF 0,960, ET 0,962, **XGBoost 0,964 (0,962–0,966)**; ensamble 0,963, 0,0007 por debajo de XGBoost (IC −0,0011 a −0,0003), no adoptado. **Algoritmo principal: XGBoost** (la LR queda 0,006 por debajo, más que el margen de 0,005). Diagnóstico de fuga: XGBoost con su propio manejo de faltantes da 0,966, apenas 0,002 más.
+6. ~~Evaluación formal, validación temporal, sensibilidades y puerta P4~~ (hecho el 23/11/2026: `notebooks/05_main_evaluation_es.ipynb`, `data/outputs_05_main_evaluation.txt`).
+   - **Validación interna (3 × 5, recalibrada):** XGBoost AUROC 0,964 (0,963–0,965), AUPRC 0,492, pendiente 0,98, observados/esperados 0,99; el 10% superior concentra el 91,5% de las muertes (9,1×). LR 0,958. Modelo de referencia (edad gestacional + peso) 0,907; el modelo completo agrega +0,057 (0,056–0,058).
+   - **Validación temporal (2022–2023):** AUROC 0,961 (0,959–0,962), pendiente 1,01 (0,97–1,03), observados/esperados 1,05 (1,01–1,08).
+   - **C1 (punto de referencia a las 48 horas, sobre el modelo ajustado una sola vez):** 34.466 de las 62.713 muertes (55%) ocurren en los días 0 y 1. En los vivos al comenzar el día 2, la AUROC baja a 0,932 (caída 0,032; 0,031–0,033, dentro del límite de 0,05), pero solo se conserva el 26% (25–27%) de la ganancia de AUPRC (se exige 67%).
+   - **Sensibilidades:** 28 semanas o más 0,936 (referencia 0,829 al reajustar); 48 horas y 28 semanas o más 0,893; neonatal precoz 0,981; registros completos 0,959 sin reajuste y 0,960 reajustado (la imputación no mueve el resultado); cohortes 2020–2021: AUROC 0,964 y observados/esperados 0,94.
+   - **Clasificación en P4 con el framework 1.2: identificador temprano.** Cumple C2 y C4; C3 no aplica; no cumple C1 por la ganancia de AUPRC: buena parte de lo que el modelo detecta son muertes de los primeros dos días, ya definidas en buena medida al nacer.
+7. **Framework 1.3 (23/11/2026):** C1 se decide solo con la caída del AUROC, porque la ganancia de AUPRC depende de la prevalencia, que cae a menos de la mitad a las 48 horas. Cambio adoptado después de ver este resultado; no cambia ningún otro modelo ([`decision_G4_C1_2026-11-23_es.md`](decision_G4_C1_2026-11-23_es.md)). Con la caída de 0,032, C1 cumple: **clasificación en P4: predictor** (`scripts/g4_framework_1_3.py`, `data/outputs_05b_g4_framework_1_3.txt`).
 
 *Confidencial: uso interno del proyecto de investigación.*

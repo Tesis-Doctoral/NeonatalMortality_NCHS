@@ -4,7 +4,7 @@
 
 ¿Se puede identificar, al nacer, a los nacidos vivos con riesgo alto de morir en sus primeros 28 días? Este modelo usa los archivos públicos de nacimientos vinculados con defunciones infantiles del National Center for Health Statistics (NCHS, CDC) y sigue el framework por etapas para modelos de predicción clínica.
 
-> **Estado (20/11/2026): adaptador de datos hecho.** Las 8 cohortes de nacimiento (2016–2023) están construidas, con el 100% de las muertes infantiles unidas a su nacimiento ([`data/outputs_01_build_cohorts.txt`](data/outputs_01_build_cohorts.txt)). Siguiente: auditoría de conteos.
+> **Estado (23/11/2026): clasificado en P4 como predictor con el framework 1.3** (XGBoost, AUROC 0,964; a las 48 horas 0,932; temporal 0,961; [`data/outputs_05_main_evaluation.txt`](data/outputs_05_main_evaluation.txt), [`data/outputs_05b_g4_framework_1_3.txt`](data/outputs_05b_g4_framework_1_3.txt)). Con el framework 1.2 era identificador temprano ([`docs/decision_G4_C1_2026-11-23_es.md`](docs/decision_G4_C1_2026-11-23_es.md)). Las 8 cohortes de nacimiento (2016–2023) están construidas, con el 100% de las muertes infantiles unidas a su nacimiento ([`data/outputs_01_build_cohorts.txt`](data/outputs_01_build_cohorts.txt)); 82.559 muertes neonatales en 29,8 millones de nacidos vivos ([`data/outputs_02_count_audit.txt`](data/outputs_02_count_audit.txt)). Predictores fijados (71 parámetros) y puertas P2 y P3 superadas ([`data/outputs_03_predictors_g2_g3.txt`](data/outputs_03_predictors_g2_g3.txt)). Corrida preliminar: XGBoost es el algoritmo principal (AUROC 0,964; [`data/outputs_04_preliminary_learners.txt`](data/outputs_04_preliminary_learners.txt)). Siguiente: reporte (E10–E11).
 
 [English version](README.md)
 
@@ -24,6 +24,11 @@ Los archivos *Period/Cohort Linked Birth/Infant Death* se descargan de https://w
 | Orden | Notebook | Crea | Etapa del framework |
 |---|---|---|---|
 | 1 | `notebooks/01_build_cohorts_es.ipynb` | `data/interim/cohort_<año>.parquet` (una por cohorte) y `data/outputs_01_build_cohorts.txt` | E2 (adaptador de datos) |
+| 2 | `notebooks/02_count_audit_es.ipynb` | `data/outputs_02_count_audit.txt` | E4 (auditoría de conteos), P1, verificación P2 de los desconocidos |
+| 3 | `notebooks/03_predictors_g2_g3_es.ipynb` | `data/contract/neonatal_nchs_v1/cohort_<año>.parquet` y `data/outputs_03_predictors_g2_g3.txt` | E7 (predictores), P2, P3 |
+| 4 | `notebooks/04_preliminary_learners_es.ipynb` | `data/outputs_04_preliminary_learners.txt` y `data/outputs_04_selection.json` | E8 (corrida preliminar, regla del algoritmo principal) |
+| 5 | `notebooks/05_main_evaluation_es.ipynb` | `data/outputs_05_main_evaluation.txt` | E8–E9 (evaluación formal, validación temporal, sensibilidades), P4 |
+| 5b | `scripts/g4_framework_1_3.py` | `data/outputs_05b_g4_framework_1_3.txt` | P4 con el framework 1.3 (sin reajustar; lee la salida del 05) |
 
 El lector es `libraries/nchs_reader.py`: lee los archivos de ancho fijo directamente de los ZIP, con las posiciones del diseño de registro de las guías (idénticas de 2016 a 2023).
 

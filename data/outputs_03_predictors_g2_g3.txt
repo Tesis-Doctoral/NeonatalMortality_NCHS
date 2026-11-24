@@ -1,0 +1,184 @@
+Predictor table and gates G2 and G3 of the neonatal model (aggregate output only)
+
+== Q-P1 Contract table: 29829867 births, 71 parameters; % missing and mean (continuous) or % yes, whole population
+                            pct_missing  mean_or_pct_yes
+age                                0.00            29.17
+race_black                         0.91            14.40
+race_hispanic                      0.91            24.41
+race_asian                         0.91             6.26
+race_other                         0.91             3.31
+educ_some_college                  1.44            27.69
+educ_bachelor_plus                 1.44            34.01
+born_outside_us                    0.20            22.64
+pay_medicaid                       0.68            41.98
+pay_self                           0.68             4.10
+pay_other                          0.68             3.57
+wic                                1.12            34.04
+prior_living_1                     0.15            31.87
+prior_living_2plus                 0.15            29.46
+prior_child_died                   0.26             1.15
+prior_other_termination            0.30            27.42
+interval_lt18                     12.67            12.50
+interval_18_59                    12.67            37.85
+interval_60plus                   12.67            14.17
+prior_cesarean                     0.10            15.46
+prior_preterm_birth                0.10             3.60
+care_after_first_trimester         2.26            20.76
+no_prenatal_care                   2.26             1.87
+prenatal_visits                    2.30            11.15
+bmi                                2.23            27.38
+weight_gain                        2.97            29.48
+smoked_during_pregnancy            0.43             5.45
+pregestational_diabetes            0.10             1.03
+gestational_diabetes               0.10             7.28
+chronic_hypertension               0.10             2.39
+gestational_hypertension           0.10             8.03
+eclampsia                          0.10             0.27
+infertility_treatment              0.10             2.08
+gonorrhea                          0.31             0.31
+syphilis                           0.31             0.18
+chlamydia                          0.31             1.81
+hepatitis_b                        0.31             0.20
+hepatitis_c                        0.31             0.46
+induction                          0.06            29.35
+augmentation                       0.05            21.36
+antenatal_steroids                 0.05             3.53
+antibiotics_in_labor               0.05            25.23
+chorioamnionitis                   0.05             1.60
+anesthesia                         0.05            76.15
+presentation_breech                0.30             4.06
+presentation_other                 0.30             0.93
+delivery_forceps                   0.04             0.50
+delivery_vacuum                    0.04             2.49
+delivery_cesarean                  0.04            32.01
+trial_of_labor                     0.34             8.60
+born_out_of_hospital               0.00             1.87
+attendant_midwife                  0.06            11.03
+attendant_other                    0.06             0.97
+twin                               0.00             3.18
+triplet_or_more                    0.00             0.09
+male                               0.00            51.14
+gestational_age                    0.00            38.57
+birthweight                        0.02          3256.65
+apgar5                             0.37             8.78
+anencephaly                        0.15             0.01
+spina_bifida                       0.15             0.01
+cyanotic_heart_disease             0.15             0.06
+diaphragmatic_hernia               0.15             0.01
+omphalocele                        0.15             0.01
+gastroschisis                      0.15             0.02
+limb_reduction                     0.15             0.01
+cleft_lip                          0.15             0.05
+cleft_palate                       0.15             0.02
+hypospadias                        0.15             0.06
+down_syndrome                      0.15             0.05
+chromosomal_disorder               0.15             0.04
+
+== Gate G2: design checks
+no outcome, landmark, death-certificate or post-prediction field among the predictors         True
+no missingness or imputation indicator among the predictors (M5-D3)                           True
+marital status excluded (M5-D2)                                                               True
+unit of analysis is the live birth and the group is the unit itself (no mother identifier)    True
+
+== G2 leakage check: births by number of unknown predictor fields (development cohorts)
+             births    pct
+n_unknown                 
+0          17911137  79.33
+1            555683   2.46
+2            492097   2.18
+3           2748733  12.17
+4            257239   1.14
+5            200392   0.89
+6            195772   0.87
+7             58914   0.26
+8             46622   0.21
+9             26835   0.12
+10            15683   0.07
+11             9384   0.04
+12            20266   0.09
+13             7564   0.03
+14             5257   0.02
+15             6011   0.03
+16             2819   0.01
+17             2809   0.01
+18             1824   0.01
+19             1289   0.01
+20             1287   0.01
+21              838   0.00
+22              698   0.00
+23             1442   0.01
+24              568   0.00
+25             1532   0.01
+26              808   0.00
+27              324   0.00
+28              331   0.00
+29              439   0.00
+30              252   0.00
+31              427   0.00
+32              548   0.00
+33              262   0.00
+34              458   0.00
+35              184   0.00
+36              156   0.00
+37              359   0.00
+38              146   0.00
+39              110   0.00
+40              173   0.00
+41              127   0.00
+42               82   0.00
+43               61   0.00
+44               66   0.00
+45               95   0.00
+46               55   0.00
+47               73   0.00
+48               36   0.00
+49               36   0.00
+50               60   0.00
+51               21   0.00
+52               28   0.00
+53               19   0.00
+54               33   0.00
+55               19   0.00
+56                9   0.00
+57                7   0.00
+58                8   0.00
+59                3   0.00
+60                3   0.00
+61                3   0.00
+62                1   0.00
+
+== G2 leakage check: AUROC of the number of unknown fields alone (development cohorts)
+population    0.601
+ge28_weeks    0.571
+
+== Gate G3: data (development cohorts 2016-2021)
+development births                             22578517
+development events                                62713
+prevalence                                      0.00278
+Cox-Snell R2 max                                0.03752
+sample used (all events + 3% of non-events)      738384
+
+== Gate G3: sample size (Riley et al.), planning and reassessment
+                                        main model (all predictors) reference model (gestational age + birthweight)
+candidate parameters                                             71                                               2
+events per parameter                                          883.3                                         31356.5
+assumed R2 (15% of max)                                     0.00563                                         0.00563
+planning: n required (shrinkage)                             113174                                            3188
+planning: n required (optimism)                               37701                                            1062
+planning: n required (overall risk)                               5                                               5
+planning: n required                                         113174                                            3188
+planning: events required                                       315                                               9
+planning: parameters supported                                14164                                           14164
+planning: gate G3                                            PASSED                                          PASSED
+observed Cox-Snell R2 (cross-validated)                     0.02005                                         0.01423
+% of maximum                                                   53.4                                            37.9
+reassessment: n required (shrinkage)                          31519                                            1255
+reassessment: n required (optimism)                           37427                                            1058
+reassessment: n required (overall risk)                           5                                               5
+reassessment: n required                                      37427                                            1255
+reassessment: events required                                   104                                               4
+reassessment: parameters supported                            42832                                           35993
+reassessment: gate G3                                        PASSED                                          PASSED
+
+== Primary learner rule (events per parameter >= 20: best base learner of a preliminary run)
+events per parameter = 883.3

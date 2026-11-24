@@ -1,0 +1,110 @@
+Main evaluation of the neonatal model (birth + 5 minutes)
+
+== Primary learner (notebook 04)
+primary learner                                                                                                                                                                                                       XGB
+hyperparameters                    {"max_depth": 8, "learning_rate": 0.0211, "min_child_weight": 4.5508, "subsample": 0.8075, "colsample_bytree": 0.6844, "reg_lambda": 0.1686, "reg_alpha": 0.0074, "n_estimators": 302}
+ensemble adopted in notebook 04                                                                                                                                                                                     False
+
+== Data
+                           births  neonatal deaths  sample rows
+development 2016-2021    22578517            62713       512880
+temporal test 2022-2023   7251350            19846       164237
+
+== Internal validation: 3 x 5-fold cross-validation, recalibrated (development 2016-2021)
+                                 XGB       LR  reference (GA + birthweight)
+events in top 5% (%)         88.6743  88.0211                       72.5687
+events in top 10% (%)        91.4558  90.9009                       79.1904
+AUROC                         0.9643   0.9575                        0.9074
+AUPRC                         0.4917   0.4686                        0.2931
+prevalence                    0.0028   0.0028                        0.0028
+Brier                         0.0019   0.0019                        0.0022
+calibration slope             0.9773   0.9882                        0.9884
+calibration intercept        -0.0094  -0.0020                        0.0028
+observed/expected             0.9942   0.9989                        1.0024
+ECE                           0.0001   0.0003                        0.0001
+AUROC 2.5%                    0.9634   0.9564                        0.9058
+AUPRC 2.5%                    0.4789   0.4530                        0.2817
+calibration slope 2.5%        0.9737   0.9760                        0.9750
+calibration intercept 2.5%   -0.0456  -0.0371                       -0.0300
+observed/expected 2.5%        0.9717   0.9773                        0.9765
+AUROC 97.5%                   0.9651   0.9585                        0.9086
+AUPRC 97.5%                   0.5088   0.4848                        0.3073
+calibration slope 97.5%       0.9799   1.0116                        1.0059
+calibration intercept 97.5%   0.0131   0.0276                        0.0100
+observed/expected 97.5%       1.0083   1.0177                        1.0081
+AUROC SD across repeats       0.0001   0.0000                        0.0001
+
+== Full model minus reference model (GA + birthweight): AUROC difference, paired bootstrap 95% CI
++0.0570 (+0.0557 to +0.0581)
+
+== Temporal validation: development 2016-2021, single test 2022-2023
+                                 XGB       LR  reference (GA + birthweight)
+events in top 5% (%)         87.4584  86.6724                       70.9362
+events in top 10% (%)        90.3910  89.7914                       77.2649
+AUROC                         0.9606   0.9522                        0.8995
+AUPRC                         0.4645   0.4379                        0.2677
+prevalence                    0.0027   0.0027                        0.0027
+Brier                         0.0019   0.0020                        0.0022
+calibration slope             1.0114   1.0311                        1.0168
+calibration intercept         0.0663   0.0862                        0.0257
+observed/expected             1.0455   1.0599                        1.0216
+ECE                           0.0002   0.0005                        0.0002
+AUROC 2.5%                    0.9587   0.9501                        0.8966
+AUPRC 2.5%                    0.4405   0.4096                        0.2505
+calibration slope 2.5%        0.9701   0.9879                        0.9759
+calibration intercept 2.5%    0.0089   0.0279                       -0.0072
+observed/expected 2.5%        1.0059   1.0187                        0.9941
+AUROC 97.5%                   0.9623   0.9540                        0.9022
+AUPRC 97.5%                   0.4893   0.4632                        0.2854
+calibration slope 97.5%       1.0308   1.0566                        1.0379
+calibration intercept 97.5%   0.1162   0.1316                        0.0621
+observed/expected 97.5%       1.0816   1.0934                        1.0532
+
+== Criterion C1: 48-hour landmark on the out-of-fold predictions of the primary learner (28247 deaths on days 2-27; 34466 deaths on days 0-1 removed)
+                     estimate     2.5%    97.5%
+AUROC full             0.9643   0.9633   0.9652
+AUROC landmark         0.9323   0.9304   0.9341
+AUROC drop             0.0320   0.0308   0.0331
+AUPRC gain full        0.4906   0.4745   0.5055
+AUPRC gain landmark    0.1268   0.1172   0.1387
+AUPRC gain kept (%)   25.8357  24.6559  27.4411
+
+== Sensitivity analyses (primary learner, out-of-fold predictions of the model fitted once; observed/expected compares the deaths of each label with the predicted risk of death at 0-27 days)
+                                                                              births (weighted)   events   AUROC  observed/expected
+all births (main)                                                                    22571063.0  62713.0  0.9643              0.990
+(c) 28 weeks or more                                                                 22440981.0  33081.0  0.9356              0.978
+(a) + (c) 48-hour landmark, 28 weeks or more                                         22425101.0  17201.0  0.8930              0.605
+(b) early neonatal death 0-6 days vs survivors (deaths on days 7-27 removed)         22554878.0  46528.0  0.9814              0.763
+cohorts 2020-2021 (pandemic)                                                          7245657.0  19207.0  0.9635              0.943
+cohorts 2016-2019                                                                    15325406.0  43506.0  0.9646              1.012
+complete records (main model, no refit)                                              17909865.0  37815.0  0.9594              0.943
+
+== Refitted sensitivity analyses (primary learner): AUROC and events
+                                                                 AUROC   events
+complete records, refitted (no imputation)                      0.9595  37815.0
+48-hour landmark, refitted                                      0.9332  28247.0
+28 weeks or more, refitted                                      0.9359  33081.0
+28 weeks or more, reference model (GA + birthweight), refitted  0.8290  33081.0
+
+== Gate G4: classification of the neonatal model (primary learner)
+C1 events already present      NOT met (48-hour landmark: AUROC drop 0.032, 95% CI 0.031-0.033, required <= 0.05; AUPRC gain kept 26%, 95% CI 25-27%, required >= 67%)
+C2 outcome with time                                                                               met (AUROC 0.964, 95% CI 0.963-0.965; required >= 0.75 and >= 0.70)
+C3 detection bias                                                                    not applicable (death certificate; linkage of deaths to births 100%, notebook 01)
+C4 stability over time                                                met (temporal AUROC 0.961, 95% CI 0.959-0.962; slope 1.01, 95% CI 0.97-1.03, required 0.90-1.10)
+events in top 10% vs chance                                                                                                                                 9.15 times
+classification                                                                                                                                        EARLY IDENTIFIER
+
+== Confusion matrix of the primary learner (out-of-fold, weighted to the development population)
+            TP    FN       FP        TN  accuracy  sensitivity  specificity     PPV      NPV
+flagged                                                                                     
+top 10%  57366  5347  2199750  20308600    0.9023        0.915       0.9023  0.0254  0.99974
+top 5%   55625  7088  1072950  21435400    0.9521        0.887       0.9523  0.0493  0.99967
+
+== Decision curve (primary learner)
+           net benefit model  net benefit treat all  % flagged
+threshold                                                     
+0.002                0.00237                0.00078       5.65
+0.005                0.00225               -0.00223       2.82
+0.010                0.00213               -0.00729       1.87
+0.020                0.00199               -0.01757       1.26
+0.050                0.00171               -0.04971       0.75

@@ -1,0 +1,457 @@
+Count audit of the neonatal population (aggregate counts only; 1-9 shown as <10)
+
+== Q-N1 Population (US residents, 22-47 weeks) and events by label
+        population  events_0_27d  first_24h  day1_27  early_0_6d  post_neonatal_28d_1y  population_ge28  events_ge28  per_1000
+cohort                                                                                                                        
+2016       3938288         11497       5107     6390        8605                  7654          3914482         5850      2.92
+2017       3848558         11057       5356     5701        8222                  7337          3825287         5741      2.87
+2018       3785243         10703       5161     5542        7998                  7104          3762869         5655      2.83
+2019       3741187         10249       5136     5113        7605                  6905          3718587         5439      2.74
+2020       3607479          9574       4823     4751        7110                  6557          3586692         5164      2.65
+2021       3657762          9633       4556     5077        6988                  7296          3636328         5232      2.63
+2022       3661524          9967       4697     5270        7148                  7267          3640382         5517      2.72
+2023       3589826          9879       4620     5259        7089                  6803          3569019         5499      2.75
+
+== Gate G1: reference counts reproduced
+2016    True
+2017    True
+2018    True
+2019    True
+2020    True
+2021    True
+2022    True
+2023    True
+
+== Q-N2 Neonatal deaths by age at death (day 0 split into <1 h and 1-23 h)
+        under_1h  1_23h  day_1  day_2  day_3  day_4  day_5  day_6  day_7_27  age_missing
+cohort                                                                                  
+2016        1823   3284   1412    722    446    350    303    265      2892            0
+2017        1648   3708    845    725    444    309    279    264      2835            0
+2018        1669   3492    802    738    428    350    279    240      2705            0
+2019        1598   3538    431    714    440    346    265    273      2644            0
+2020        1515   3308    404    664    429    296    265    229      2464            0
+2021        1322   3234    433    672    452    334    286    255      2645            0
+2022        1395   3302    440    676    427    344    277    287      2819            0
+2023        1346   3274    425    729    451    319    279    266      2790            0
+
+== Q-N2b Share of the neonatal deaths: day 0, day 1, days 0-1 together and days 2-27
+        day0_pct  day1_pct  day0_plus_day1_pct  day2_27_pct
+cohort                                                     
+2016        44.4      12.3                56.7         43.3
+2017        48.4       7.6                56.1         43.9
+2018        48.2       7.5                55.7         44.3
+2019        50.1       4.2                54.3         45.7
+2020        50.4       4.2                54.6         45.4
+2021        47.3       4.5                51.8         48.2
+2022        47.1       4.4                51.5         48.5
+2023        46.8       4.3                51.1         48.9
+
+== Q-N3 Gestational-age bands (combined gestation), cohorts 2016-2023
+       population  events_0_27d  first_24h  pct_population  pct_events  per_1000
+band                                                                            
+22-23       34964         18843      13042            0.12        22.8     538.9
+24-27      141257         19619       8189            0.47        23.8     138.9
+28-31      355899          9416       4594            1.19        11.4      26.5
+32-36     3003558         13908       6734           10.07        16.8       4.6
+37-47    26294189         20773       6897           88.15        25.2       0.8
+
+== Q-N3b Gestational age and birthweight imputed by NCHS (% of the population)
+        ga_imputed_pct  bw_imputed_pct
+cohort                                
+2016              2.02            0.07
+2017              1.86            0.00
+2018              1.73            0.01
+2019              1.54            0.01
+2020              1.51            0.01
+2021              1.43            0.04
+2022              1.38            0.04
+2023              1.49            0.03
+
+== Q-N4 [mother] MRACEHISP: births and % of the population
+          n    pct
+1  15262446  51.16
+2   4255917  14.27
+3    221505   0.74
+4   1849025   6.20
+5     77177   0.26
+6    678841   2.28
+7   7214671  24.19
+8    270285   0.91
+
+== Q-N4 [mother] MEDUC: births and % of the population
+         n    pct
+1   942574   3.16
+2  2645563   8.87
+3  7671576  25.72
+4  5677007  19.03
+5  2465372   8.26
+6  6233638  20.90
+7  2913660   9.77
+8   850953   2.85
+9   429524   1.44
+
+== Q-N4 [mother] DMAR: births and % of the population
+                n    pct
+1        16046582  53.79
+2        10755284  36.06
+missing   3028001  10.15
+
+== Q-N4 [mother] MBSTATE_REC: births and % of the population
+          n   pct
+1  23028629  77.2
+2   6740864  22.6
+3     60374   0.2
+
+== Q-N4 [mother] PAY_REC: births and % of the population
+          n    pct
+1  12437477  41.69
+2  14918763  50.01
+3   1213343   4.07
+4   1058875   3.55
+9    201409   0.68
+
+== Q-N4 [mother] WIC: births and % of the population
+          n    pct
+N  19454936  65.22
+U    332882   1.12
+Y  10042049  33.66
+
+== Q-N4 [obstetric_history] RF_CESAR: births and % of the population
+          n    pct
+N  25192502  84.45
+U     29823   0.10
+Y   4607542  15.45
+
+== Q-N4 [obstetric_history] RF_PPB: births and % of the population
+          n   pct
+N  28727508  96.3
+U     29823   0.1
+Y   1072536   3.6
+
+== Q-N4 [current_pregnancy] CIG_REC: births and % of the population
+          n    pct
+N  28081528  94.14
+U    129358   0.43
+Y   1618981   5.43
+
+== Q-N4 [current_pregnancy] RF_PDIAB: births and % of the population
+          n    pct
+N  29493969  98.87
+U     29823   0.10
+Y    306075   1.03
+
+== Q-N4 [current_pregnancy] RF_GDIAB: births and % of the population
+          n    pct
+N  27631721  92.63
+U     29823   0.10
+Y   2168323   7.27
+
+== Q-N4 [current_pregnancy] RF_PHYPE: births and % of the population
+          n    pct
+N  29087546  97.51
+U     29823   0.10
+Y    712498   2.39
+
+== Q-N4 [current_pregnancy] RF_GHYPE: births and % of the population
+          n    pct
+N  27406183  91.87
+U     29823   0.10
+Y   2393861   8.03
+
+== Q-N4 [current_pregnancy] RF_EHYPE: births and % of the population
+          n    pct
+N  29720577  99.63
+U     29823   0.10
+Y     79467   0.27
+
+== Q-N4 [current_pregnancy] RF_INFT: births and % of the population
+          n    pct
+N  29180739  97.82
+U     29823   0.10
+Y    619305   2.08
+
+== Q-N4 [current_pregnancy] IP_GON: births and % of the population
+          n    pct
+N  29645767  99.38
+U     92591   0.31
+Y     91509   0.31
+
+== Q-N4 [current_pregnancy] IP_SYPH: births and % of the population
+          n    pct
+N  29683984  99.51
+U     92591   0.31
+Y     53292   0.18
+
+== Q-N4 [current_pregnancy] IP_CHLAM: births and % of the population
+          n    pct
+N  29197701  97.88
+U     92591   0.31
+Y    539575   1.81
+
+== Q-N4 [current_pregnancy] IP_HEPB: births and % of the population
+          n    pct
+N  29677840  99.49
+U     92591   0.31
+Y     59436   0.20
+
+== Q-N4 [current_pregnancy] IP_HEPC: births and % of the population
+          n    pct
+N  29600410  99.23
+U     92591   0.31
+Y    136866   0.46
+
+== Q-N4 [labor_delivery] LD_INDL: births and % of the population
+          n    pct
+N  21061304  70.60
+U     18327   0.06
+Y   8750236  29.33
+
+== Q-N4 [labor_delivery] LD_AUGM: births and % of the population
+          n    pct
+N  23447407  78.60
+U     15549   0.05
+Y   6366911  21.34
+
+== Q-N4 [labor_delivery] LD_STER: births and % of the population
+          n    pct
+N  28761854  96.42
+U     15549   0.05
+Y   1052464   3.53
+
+== Q-N4 [labor_delivery] LD_ANTB: births and % of the population
+          n    pct
+N  22292553  74.73
+U     15549   0.05
+Y   7521765  25.22
+
+== Q-N4 [labor_delivery] LD_CHOR: births and % of the population
+          n    pct
+N  29336118  98.34
+U     15549   0.05
+Y    478200   1.60
+
+== Q-N4 [labor_delivery] LD_ANES: births and % of the population
+          n    pct
+N   7110243  23.84
+U     15549   0.05
+Y  22704075  76.11
+
+== Q-N4 [labor_delivery] ME_PRES: births and % of the population
+          n    pct
+1  28255486  94.72
+2   1208894   4.05
+3    276892   0.93
+9     88595   0.30
+
+== Q-N4 [labor_delivery] ME_ROUT: births and % of the population
+          n    pct
+1  19383978  64.98
+2    148958   0.50
+3    741121   2.48
+4   9543309  31.99
+9     12501   0.04
+
+== Q-N4 [labor_delivery] ME_TRIAL: births and % of the population
+          n    pct
+N   6897246  23.12
+U    101968   0.34
+X  20274057  67.97
+Y   2556596   8.57
+
+== Q-N4 [labor_delivery] BFACIL3: births and % of the population
+          n    pct
+1  29270007  98.12
+2    558747   1.87
+3      1113   0.00
+
+== Q-N4 [labor_delivery] ATTEND: births and % of the population
+          n    pct
+1  23682877  79.39
+2   2553078   8.56
+3   2993907  10.04
+4    293619   0.98
+5    288961   0.97
+9     17425   0.06
+
+== Q-N4 [newborn] DPLURAL: births and % of the population
+          n    pct
+1  28855372  96.73
+2    948959   3.18
+3     24274   0.08
+4      1151   0.00
+5       111   0.00
+
+== Q-N4 [newborn] SEX: births and % of the population
+          n    pct
+F  14575931  48.86
+M  15253936  51.14
+
+== Q-N4 [newborn] CA_ANEN: births and % of the population
+          n    pct
+N  29781909  99.84
+U     45214   0.15
+Y      2744   0.01
+
+== Q-N4 [newborn] CA_MNSB: births and % of the population
+          n    pct
+N  29780517  99.83
+U     45214   0.15
+Y      4136   0.01
+
+== Q-N4 [newborn] CA_CCHD: births and % of the population
+          n    pct
+N  29766468  99.79
+U     45214   0.15
+Y     18185   0.06
+
+== Q-N4 [newborn] CA_CDH: births and % of the population
+          n    pct
+N  29780863  99.84
+U     45214   0.15
+Y      3790   0.01
+
+== Q-N4 [newborn] CA_OMPH: births and % of the population
+          n    pct
+N  29781670  99.84
+U     45214   0.15
+Y      2983   0.01
+
+== Q-N4 [newborn] CA_GAST: births and % of the population
+          n    pct
+N  29778549  99.83
+U     45214   0.15
+Y      6104   0.02
+
+== Q-N4 [newborn] CA_LIMB: births and % of the population
+          n    pct
+N  29780973  99.84
+U     45214   0.15
+Y      3680   0.01
+
+== Q-N4 [newborn] CA_CLEFT: births and % of the population
+          n    pct
+N  29769313  99.80
+U     45214   0.15
+Y     15340   0.05
+
+== Q-N4 [newborn] CA_CLPAL: births and % of the population
+          n    pct
+N  29777740  99.83
+U     45214   0.15
+Y      6913   0.02
+
+== Q-N4 [newborn] CA_DOWN: births and % of the population
+          n    pct
+C      7076   0.02
+N  29768813  99.80
+P      8764   0.03
+U     45214   0.15
+
+== Q-N4 [newborn] CA_DISOR: births and % of the population
+          n    pct
+C      4396   0.01
+N  29771431  99.80
+P      8826   0.03
+U     45214   0.15
+
+== Q-N4 [newborn] CA_HYPO: births and % of the population
+          n    pct
+N  29767893  99.79
+U     45214   0.15
+Y     16760   0.06
+
+== Q-N5 Numeric candidates: % unknown and percentiles
+           pct_unknown     p05     p25     p50     p75     p95  pct_not_applicable_888
+field                                                                                 
+MAGER             0.00    20.0    25.0    29.0    33.0    39.0                     NaN
+PRIORLIVE         0.15     0.0     0.0     1.0     2.0     4.0                     NaN
+PRIORDEAD         0.26     0.0     0.0     0.0     0.0     0.0                     NaN
+PRIORTERM         0.30     0.0     0.0     0.0     1.0     2.0                     NaN
+ILP_R            11.55    10.0    19.0    31.0    54.0   117.0                   30.99
+RF_CESARN         0.13     0.0     0.0     0.0     0.0     1.0                     NaN
+PRECARE           2.26     1.0     2.0     3.0     3.0     6.0                     NaN
+PREVIS            2.30     4.0     9.0    11.0    13.0    17.0                     NaN
+BMI               2.23    19.1    22.4    25.8    31.0    40.7                     NaN
+WTGAIN            2.97     5.0    20.0    29.0    38.0    56.0                     NaN
+COMBGEST          0.00    35.0    38.0    39.0    40.0    42.0                     NaN
+BRTHWGT           0.02  2268.0  2950.0  3290.0  3625.0  4111.0                     NaN
+APGAR5            0.37     8.0     9.0     9.0     9.0     9.0                     NaN
+
+== Q-N6 % unknown by cohort, whole population
+cohort        2016   2017   2018   2019   2020   2021   2022   2023  all_cohorts
+MAGER         0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00         0.00
+MRACEHISP     0.90   0.83   0.87   0.94   0.92   0.97   0.93   0.89         0.91
+MEDUC         1.28   1.26   1.27   1.42   1.41   1.51   1.64   1.76         1.44
+DMAR          0.00  12.24  12.00  11.91  11.63  11.48  11.43  11.12        10.15
+MBSTATE_REC   0.20   0.19   0.19   0.20   0.19   0.21   0.22   0.22         0.20
+PAY_REC       0.59   0.58   0.57   0.67   0.69   0.73   0.87   0.71         0.67
+WIC           1.23   1.14   1.09   1.13   1.01   1.09   1.13   1.09         1.12
+PRIORLIVE     0.18   0.14   0.18   0.14   0.12   0.16   0.17   0.13         0.15
+PRIORDEAD     0.36   0.21   0.25   0.20   0.19   0.29   0.29   0.24         0.25
+PRIORTERM     0.46   0.27   0.31   0.23   0.22   0.30   0.30   0.28         0.30
+ILP_R        12.41  11.96  12.01  11.92  11.42  11.06  10.95  10.55        11.55
+RF_CESAR      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_CESARN     0.12   0.12   0.09   0.10   0.12   0.14   0.17   0.15         0.13
+RF_PPB        0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+PRECARE       2.80   2.50   2.47   2.22   2.00   2.06   2.12   1.83         2.26
+PREVIS        2.81   2.50   2.48   2.44   2.29   1.97   2.08   1.78         2.30
+CIG_REC       0.48   0.48   0.44   0.50   0.38   0.41   0.41   0.36         0.43
+BMI           2.72   2.48   2.23   2.26   1.91   1.96   2.02   2.24         2.23
+WTGAIN        3.56   3.35   3.04   2.93   2.53   2.69   2.77   2.80         2.97
+RF_PDIAB      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_GDIAB      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_PHYPE      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_GHYPE      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_EHYPE      0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+RF_INFT       0.08   0.08   0.06   0.07   0.09   0.12   0.16   0.14         0.10
+IP_GON        0.22   0.24   0.21   0.24   0.29   0.37   0.47   0.46         0.31
+IP_SYPH       0.22   0.24   0.21   0.24   0.29   0.37   0.47   0.46         0.31
+IP_CHLAM      0.22   0.24   0.21   0.24   0.29   0.37   0.47   0.46         0.31
+IP_HEPB       0.22   0.24   0.21   0.24   0.29   0.37   0.47   0.46         0.31
+IP_HEPC       0.22   0.24   0.21   0.24   0.29   0.37   0.47   0.46         0.31
+LD_INDL       0.06   0.05   0.10   0.04   0.05   0.07   0.07   0.05         0.06
+LD_AUGM       0.06   0.05   0.03   0.04   0.05   0.07   0.07   0.05         0.05
+LD_STER       0.06   0.05   0.03   0.04   0.05   0.07   0.07   0.05         0.05
+LD_ANTB       0.06   0.05   0.03   0.04   0.05   0.07   0.07   0.05         0.05
+LD_CHOR       0.06   0.05   0.03   0.04   0.05   0.07   0.07   0.05         0.05
+LD_ANES       0.06   0.05   0.03   0.04   0.05   0.07   0.07   0.05         0.05
+ME_PRES       0.55   0.39   0.31   0.25   0.17   0.26   0.25   0.17         0.30
+ME_ROUT       0.04   0.04   0.03   0.04   0.04   0.05   0.05   0.05         0.04
+ME_TRIAL      0.40   0.31   0.19   0.39   0.37   0.41   0.35   0.32         0.34
+BFACIL3       0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00         0.00
+ATTEND        0.05   0.07   0.06   0.06   0.05   0.06   0.07   0.06         0.06
+DPLURAL       0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00         0.00
+SEX           0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00         0.00
+COMBGEST      0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00         0.00
+BRTHWGT       0.00   0.03   0.03   0.05   0.03   0.00   0.00   0.00         0.02
+APGAR5        0.36   0.34   0.36   0.35   0.39   0.40   0.40   0.38         0.37
+CA_ANEN       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_MNSB       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_CCHD       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_CDH        0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_OMPH       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_GAST       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_LIMB       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_CLEFT      0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_CLPAL      0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_DOWN       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_DISOR      0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+CA_HYPO       0.16   0.11   0.14   0.13   0.12   0.17   0.18   0.21         0.15
+
+== Q-N6b Candidates with more than 5% unknown in any cohort
+cohort   2016   2017   2018   2019   2020   2021   2022   2023  all_cohorts
+DMAR     0.00  12.24  12.00  11.91  11.63  11.48  11.43  11.12        10.15
+ILP_R   12.41  11.96  12.01  11.92  11.42  11.06  10.95  10.55        11.55
+
+== Q-N7 Gate G2: AUROC of the number of unknown fields alone (neonatal death 0-27 days)
+                                 population  ge28_weeks
+AUROC of the number of unknowns       0.577       0.556
+
+== Q-N7b Number of unknown fields: births (whole population)
+     records
+0   21579174
+1    6210424
+2    1197407
+3     439077
+4     145268
+5+    258517
