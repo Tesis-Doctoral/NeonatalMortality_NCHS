@@ -4,7 +4,7 @@ Spanish version: [`e10_action_neonatal_es.md`](e10_action_neonatal_es.md). Resul
 
 ## 1. Class and use
 
-The model is a **predictor** (framework 1.3): at 5 minutes after birth it estimates the risk of dying in the first 28 days. Its use is **prevention: prioritizing the highest-risk newborns for more intensive care from birth**, for example:
+The model is a **predictor**: at 5 minutes after birth it estimates the risk of dying in the first 28 days. Its use is **prevention: prioritizing the highest-risk newborns for more intensive care from birth**, for example:
 
 - immediate assessment by neonatology and an early decision on the level of care (intensive care unit, transfer to a higher-level center);
 - close monitoring during the first days and before discharge;

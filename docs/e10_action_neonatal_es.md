@@ -4,7 +4,7 @@ Versión en inglés: [`e10_action_neonatal.md`](e10_action_neonatal.md). Resulta
 
 ## 1. Clase y uso
 
-El modelo es **predictor** (framework 1.3): estima, a los 5 minutos del nacimiento, el riesgo de morir en los primeros 28 días. El uso que le corresponde es **la prevención: priorizar a los recién nacidos de mayor riesgo para una atención más intensa desde el nacimiento**, por ejemplo:
+El modelo es **predictor**: estima, a los 5 minutos del nacimiento, el riesgo de morir en los primeros 28 días. El uso que le corresponde es **la prevención: priorizar a los recién nacidos de mayor riesgo para una atención más intensa desde el nacimiento**, por ejemplo:
 
 - valoración inmediata por neonatología y decisión temprana sobre el nivel de cuidado (unidad de cuidado intensivo, traslado a un centro de mayor complejidad);
 - vigilancia estrecha durante los primeros días y antes del egreso;

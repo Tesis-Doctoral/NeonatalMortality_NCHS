@@ -61,7 +61,7 @@ Abreviaturas: **FD** = ficha del desenlace [`outcome_card_neonatal_nchs_es.md`](
 |---|---|---|---|---|
 | 18a | D;E | Financiación | Monografía | 📝 |
 | 18b | D;E | Conflictos de interés | Monografía | 📝 |
-| 18c | D;E | Protocolo y desviaciones | FW (framework por etapas) + FD (decisiones fechadas); desviaciones registradas: M4-D1 a M4-D3, framework 1.3 ([`decision_G4_C1_2026-11-23_es.md`](decision_G4_C1_2026-11-23_es.md)) | ✅ |
+| 18c | D;E | Protocolo y desviaciones | FW (framework por etapas) + FD (decisiones fechadas); desviaciones registradas: M4-D1 a M4-D3 y el criterio C1 decidido por la caída del AUROC ([`decision_G4_C1_2026-11-23_es.md`](decision_G4_C1_2026-11-23_es.md)) | ✅ |
 | 18d | D;E | Registro | No registrado; declararlo | 📝 |
 | 18e | D;E | Disponibilidad de los datos | Archivos públicos del NCHS, enlace de descarga y condiciones (FD §7, README); no se redistribuyen | ✅ |
 | 18f | D;E | Disponibilidad del código, software y versiones | GitHub (Tesis-Doctoral/NeonatalMortality_NCHS), licencia MIT, `requirements.txt` con versiones exactas (Python 3.11.9) | ✅ |

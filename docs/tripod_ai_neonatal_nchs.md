@@ -61,7 +61,7 @@ Abbreviations: **OC** = outcome card [`outcome_card_neonatal_nchs.md`](outcome_c
 |---|---|---|---|---|
 | 18a | D;E | Funding | Monograph | 📝 |
 | 18b | D;E | Conflicts of interest | Monograph | 📝 |
-| 18c | D;E | Protocol and deviations | FW (staged framework) + OC (dated decisions); deviations recorded: M4-D1 to M4-D3, framework 1.3 ([`decision_G4_C1_2026-11-23.md`](decision_G4_C1_2026-11-23.md)) | ✅ |
+| 18c | D;E | Protocol and deviations | FW (staged framework) + OC (dated decisions); deviations recorded: M4-D1 to M4-D3 and criterion C1 decided by the AUROC drop ([`decision_G4_C1_2026-11-23.md`](decision_G4_C1_2026-11-23.md)) | ✅ |
 | 18d | D;E | Registration | Not registered; state it | 📝 |
 | 18e | D;E | Data availability | Public NCHS files, download link and conditions (OC §7, README); not redistributed | ✅ |
 | 18f | D;E | Code availability, software and versions | GitHub (Tesis-Doctoral/NeonatalMortality_NCHS), MIT license, `requirements.txt` with exact versions (Python 3.11.9) | ✅ |
