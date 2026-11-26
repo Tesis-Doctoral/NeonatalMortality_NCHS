@@ -1,0 +1,211 @@
+Tabla de predictores y puertas P2 y P3 del modelo neonatal (solo salida agregada)
+
+== Decisión E5: unidad de análisis
+cohortes con un registro por nacido vivo                                                                             8 de 8
+grupo = el propio nacimiento en todas las cohortes                                                                       Sí
+decisión                                              sigue a E6 (ningún grupo puede quedar a ambos lados de una partición)
+
+== Decisión E6: ventana de información
+campos del NCHS leídos para los predictores                                                                                   56
+campos registrados después del nacimiento + 5 minutos que se leen                                                              0
+decisión                                                             sigue a E7 (solo información conocida al nacer + 5 minutos)
+
+== Q-P1 Contract table: 29829867 births, 71 parameters; % missing and mean (continuous) or % yes, whole population
+                                     %_faltante  media_o_%_sí
+edad                                       0.00         29.17
+raza_negra                                 0.91         14.40
+raza_hispana                               0.91         24.41
+raza_asiática                              0.91          6.26
+raza_otra                                  0.91          3.31
+educ_algo_de_universidad                   1.44         27.69
+educ_pregrado_o_más                        1.44         34.01
+nacida_fuera_EEUU                          0.20         22.64
+pago_medicaid                              0.68         41.98
+pago_propio                                0.68          4.10
+pago_otro                                  0.68          3.57
+wic                                        1.12         34.04
+hijos_vivos_previos_1                      0.15         31.87
+hijos_vivos_previos_2_o_más                0.15         29.46
+hijo_previo_fallecido                      0.26          1.15
+otra_terminación_previa                    0.30         27.42
+intervalo_menor_18                        12.67         12.50
+intervalo_18_59                           12.67         37.85
+intervalo_60_o_más                        12.67         14.17
+cesárea_previa                             0.10         15.46
+parto_pretérmino_previo                    0.10          3.60
+control_después_primer_trimestre           2.26         20.76
+sin_control_prenatal                       2.26          1.87
+controles_prenatales                       2.30         11.15
+imc                                        2.23         27.38
+ganancia_de_peso                           2.97         29.48
+fumó_en_el_embarazo                        0.43          5.45
+diabetes_pregestacional                    0.10          1.03
+diabetes_gestacional                       0.10          7.28
+hipertensión_crónica                       0.10          2.39
+hipertensión_gestacional                   0.10          8.03
+eclampsia                                  0.10          0.27
+tratamiento_de_infertilidad                0.10          2.08
+gonorrea                                   0.31          0.31
+sífilis                                    0.31          0.18
+clamidia                                   0.31          1.81
+hepatitis_b                                0.31          0.20
+hepatitis_c                                0.31          0.46
+inducción                                  0.06         29.35
+conducción                                 0.05         21.36
+corticoides_antenatales                    0.05          3.53
+antibióticos_en_el_trabajo_de_parto        0.05         25.23
+corioamnionitis                            0.05          1.60
+anestesia                                  0.05         76.15
+presentación_podálica                      0.30          4.06
+presentación_otra                          0.30          0.93
+parto_fórceps                              0.04          0.50
+parto_vacuum                               0.04          2.49
+parto_cesárea                              0.04         32.01
+prueba_de_trabajo_de_parto                 0.34          8.60
+nacido_fuera_del_hospital                  0.00          1.87
+atendido_por_partera                       0.06         11.03
+atendido_por_otro                          0.06          0.97
+gemelar                                    0.00          3.18
+triple_o_más                               0.00          0.09
+masculino                                  0.00         51.14
+edad_gestacional                           0.00         38.57
+peso_al_nacer                              0.02       3256.65
+apgar5                                     0.37          8.78
+anencefalia                                0.15          0.01
+espina_bífida                              0.15          0.01
+cardiopatía_cianótica                      0.15          0.06
+hernia_diafragmática                       0.15          0.01
+onfalocele                                 0.15          0.01
+gastrosquisis                              0.15          0.02
+reducción_de_extremidades                  0.15          0.01
+labio_hendido                              0.15          0.05
+paladar_hendido                            0.15          0.02
+hipospadias                                0.15          0.06
+síndrome_de_down                           0.15          0.05
+trastorno_cromosómico                      0.15          0.04
+
+== Decisión E7: faltantes de los parámetros
+                 parámetros  mayor % faltante                                                   cuáles                                                                                                                              decisión
+faltantes <= 3%          68              2.97                                          todos los demás                                                             entran con imputación por la mediana, sin indicadores de faltante (M4-D3)
+faltantes > 3%            3             12.67  intervalo_menor_18, intervalo_18_59, intervalo_60_o_más  entran: el intervalo entre embarazos se mantuvo en la auditoría (E4, tabla M4-D2); registros completos como análisis de sensibilidad
+
+== Puerta P2: verificaciones de diseño
+ningún campo de desenlace, de landmark, del certificado de defunción ni posterior a la predicción entre los predictores    Sí
+ningún indicador de faltante o de imputación entre los predictores (M4-D3)                                                 Sí
+estado civil excluido (M4-D2)                                                                                              Sí
+la unidad de análisis es el nacido vivo y el grupo es la propia unidad (sin identificador de la madre)                     Sí
+
+== Verificación de fuga P2: nacimientos por número de campos predictores desconocidos (cohortes de desarrollo)
+                nacimientos      %
+n_desconocidos                    
+0                  17911137  79.33
+1                    555683   2.46
+2                    492097   2.18
+3                   2748733  12.17
+4                    257239   1.14
+5                    200392   0.89
+6                    195772   0.87
+7                     58914   0.26
+8                     46622   0.21
+9                     26835   0.12
+10                    15683   0.07
+11                     9384   0.04
+12                    20266   0.09
+13                     7564   0.03
+14                     5257   0.02
+15                     6011   0.03
+16                     2819   0.01
+17                     2809   0.01
+18                     1824   0.01
+19                     1289   0.01
+20                     1287   0.01
+21                      838   0.00
+22                      698   0.00
+23                     1442   0.01
+24                      568   0.00
+25                     1532   0.01
+26                      808   0.00
+27                      324   0.00
+28                      331   0.00
+29                      439   0.00
+30                      252   0.00
+31                      427   0.00
+32                      548   0.00
+33                      262   0.00
+34                      458   0.00
+35                      184   0.00
+36                      156   0.00
+37                      359   0.00
+38                      146   0.00
+39                      110   0.00
+40                      173   0.00
+41                      127   0.00
+42                       82   0.00
+43                       61   0.00
+44                       66   0.00
+45                       95   0.00
+46                       55   0.00
+47                       73   0.00
+48                       36   0.00
+49                       36   0.00
+50                       60   0.00
+51                       21   0.00
+52                       28   0.00
+53                       19   0.00
+54                       33   0.00
+55                       19   0.00
+56                        9   0.00
+57                        7   0.00
+58                        8   0.00
+59                        3   0.00
+60                        3   0.00
+61                        3   0.00
+62                        1   0.00
+
+== Verificación de fuga P2: AUROC del número de campos desconocidos solo (cohortes de desarrollo)
+población           0.601
+28_semanas_o_más    0.571
+
+== Decisión P2
+verificaciones de diseño que pasan                                                                                                                                                                          4 de 4
+AUROC del número de desconocidos (población / 28 semanas o más)                                                                                                                                      0.601 / 0.571
+claramente por encima de 0.50 (AUROC > 0.55)                                                                                                                                                                    Sí
+decisión                                                           P2 pasa; se mantienen M4-D3 y el análisis de sensibilidad con registros completos; el diagnóstico de XGBoost nativo se revisa en el notebook 04
+
+== Puerta P3: datos (cohortes de desarrollo 2016-2021)
+nacimientos de desarrollo                                   2.257852e+07
+eventos de desarrollo                                       6.271300e+04
+prevalencia                                                 2.780000e-03
+R2 de Cox-Snell máximo                                      3.752000e-02
+muestra usada (todos los eventos + 3% de los no eventos)    7.383840e+05
+
+== Puerta P3: tamaño de muestra (Riley et al.), planeación y reevaluación
+                                               modelo principal (todos los predictores) modelo de referencia (edad gestacional + peso al nacer)
+parámetros candidatos                                                                71                                                       2
+eventos por parámetro                                                             883.3                                                 31356.5
+R2 supuesto (15% del máximo)                                                    0.00563                                                 0.00563
+planeación: n requerido (encogimiento)                                           113174                                                    3188
+planeación: n requerido (optimismo)                                               37701                                                    1062
+planeación: n requerido (riesgo global)                                               5                                                       5
+planeación: n requerido                                                          113174                                                    3188
+planeación: eventos requeridos                                                      315                                                       9
+planeación: parámetros soportados                                                 14164                                                   14164
+planeación: puerta P3                                                            CUMPLE                                                  CUMPLE
+R2 de Cox-Snell observado (validación cruzada)                                  0.02005                                                 0.01423
+% del máximo                                                                       53.4                                                    37.9
+reevaluación: n requerido (encogimiento)                                          31519                                                    1255
+reevaluación: n requerido (optimismo)                                             37427                                                    1058
+reevaluación: n requerido (riesgo global)                                             5                                                       5
+reevaluación: n requerido                                                         37427                                                    1255
+reevaluación: eventos requeridos                                                    104                                                       4
+reevaluación: parámetros soportados                                               42832                                                   35993
+reevaluación: puerta P3                                                          CUMPLE                                                  CUMPLE
+
+== Regla del algoritmo principal (eventos por parámetro >= 20: mejor algoritmo base de una corrida preliminar)
+eventos por parámetro = 883.3
+
+== Decisión P3
+puerta P3, planeación y reevaluación (principal y referencia)                                                                                                                                                        CUMPLE
+eventos disponibles / requeridos (modelo principal, reevaluación)                                                                                                                                              62,713 / 104
+eventos por parámetro                                                                                                                                                                                                 883.3
+decisión                                                             P3 pasa: corrida preliminar de los algoritmos base (notebook 04); con 20 o más eventos por parámetro el algoritmo principal es el mejor de esa corrida

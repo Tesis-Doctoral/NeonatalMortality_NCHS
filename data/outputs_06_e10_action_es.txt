@@ -1,0 +1,137 @@
+Etapa E10 (de la clasificación a la acción) del modelo neonatal, prueba temporal 2022-2023
+
+== Algoritmo principal (notebook 04)
+algoritmo principal                                                                                                                                                                                                       XGB
+hiperparámetros                        {"max_depth": 8, "learning_rate": 0.0211, "min_child_weight": 4.5508, "subsample": 0.8075, "colsample_bytree": 0.6844, "reg_lambda": 0.1686, "reg_alpha": 0.0074, "n_estimators": 302}
+ensamble adoptado en el notebook 04                                                                                                                                                                                        No
+
+== Datos
+                           nacimientos  muertes neonatales  filas de la muestra
+desarrollo 2016-2021          22578517               62713               512880
+prueba temporal 2022-2023      7251350               19846               164237
+
+== Prueba temporal 2022-2023 (verificación: el mismo modelo de la validación temporal del notebook 05)
+AUROC                       9.606000e-01
+nacimientos (ponderados)    7.239396e+06
+muertes neonatales          1.984600e+04
+
+== Carga de trabajo en varios puntos de operación (prueba temporal 2022-2023, ponderada a la población completa)
+                                                                         corte de riesgo  % alertados  alertados por 1,000 nacimientos  sensibilidad  especificidad     VPP  alertas por muerte encontrada  muertes encontradas por 1,000 nacimientos  beneficio neto
+población                                            punto de operación                                                                                                                                                                                              
+todos los nacidos vivos (nacimiento + 5 min)         1% superior                  0.0297         1.00                             10.0         0.747         0.9920  0.2046                            4.9                                       2.05         0.00180
+                                                     2% superior                  0.0091         2.00                             20.0         0.822         0.9822  0.1126                            8.9                                       2.25         0.00209
+                                                     5% superior                  0.0025         5.00                             50.0         0.875         0.9523  0.0479                           20.9                                       2.40         0.00228
+                                                     10% superior                 0.0012        10.00                            100.0         0.904         0.9022  0.0248                           40.4                                       2.48         0.00236
+                                                     riesgo >= 1%                 0.0100         1.90                             19.0         0.818         0.9832  0.1181                            8.5                                       2.24         0.00207
+                                                     riesgo >= 2%                 0.0200         1.27                             12.7         0.778         0.9894  0.1678                            6.0                                       2.13         0.00192
+                                                     riesgo >= 5%                 0.0500         0.73                              7.3         0.694         0.9946  0.2623                            3.8                                       1.90         0.00162
+vivos al inicio del día 2 (muertes en los días 2-27) 1% superior                  0.0247         1.00                             10.0         0.622         0.9908  0.0831                           12.0                                       0.83         0.00060
+                                                     2% superior                  0.0082         2.00                             20.0         0.709         0.9809  0.0474                           21.1                                       0.95         0.00079
+                                                     5% superior                  0.0024         5.00                             50.0         0.781         0.9510  0.0209                           47.9                                       1.04         0.00092
+                                                     10% superior                 0.0012        10.00                            100.0         0.827         0.9010  0.0111                           90.4                                       1.11         0.00099
+                                                     riesgo >= 1%                 0.0100         1.77                             17.7         0.697         0.9832  0.0527                           19.0                                       0.93         0.00076
+                                                     riesgo >= 2%                 0.0200         1.14                             11.4         0.644         0.9894  0.0752                           13.3                                       0.86         0.00064
+                                                     riesgo >= 5%                 0.0500         0.61                              6.1         0.535         0.9946  0.1177                            8.5                                       0.72         0.00043
+
+== Desempeño por subgrupo (prueba temporal; AUROC de la población completa 0.9606; alertas: AUROC < 0.911 u O/E fuera de 0.80-1.25; edad gestacional solo descriptiva)
+                                                    nacimientos (ponderados)  muertes  muertes por 1,000   AUROC  observado/esperado  pendiente de calibración  sensibilidad con el corte del 10% superior  % alertados con el corte del 10% superior alerta
+grupo                             nivel                                                                                                                                                                                                                     
+raza y origen hispano de la madre Asiática                            432642      792               1.83  0.9650               0.956                     1.063                                       0.914                                        7.6      —
+                                  Negra                               999690     4440               4.44  0.9536               0.970                     0.971                                       0.917                                       16.1      —
+                                  Hispana                            1865913     4913               2.63  0.9654               1.046                     1.007                                       0.915                                        8.5      —
+                                  Otra                                247076      776               3.14  0.9422               0.969                     0.962                                       0.870                                       12.8      —
+                                  Blanca                             3630187     8487               2.34  0.9584               1.091                     1.034                                       0.891                                        9.1      —
+                                  desconocido                          63888      438               6.86  0.9704               1.445                     1.113                                       0.938                                       12.9    O/E
+pago del parto                    Medicaid                           2971142     9692               3.26  0.9489               0.991                     0.962                                       0.891                                       12.4      —
+                                  otro                                234447      647               2.76  0.9720               1.047                     1.131                                       0.927                                       10.3      —
+                                  seguro privado                     3671502     8252               2.25  0.9676               1.100                     1.073                                       0.915                                        7.9      —
+                                  pago propio                         307717     1017               3.30  0.9616               1.217                     1.052                                       0.911                                       11.2      —
+                                  desconocido                          54588      238               4.36  0.9683               0.980                     0.923                                       0.937                                       13.9      —
+edad gestacional                  22-27 semanas                        41230     8830             214.16  0.8418               1.077                     0.882                                       1.000                                       99.8      —
+                                  28-31 semanas                        89365     2365              26.46  0.9029               1.191                     1.022                                       0.997                                       84.5      —
+                                  32-36 semanas                       753308     3458               4.59  0.9181               0.972                     0.962                                       0.916                                       36.4      —
+                                  37 semanas o más                   6355493     5193               0.82  0.8967               0.990                     0.992                                       0.690                                        5.2      —
+pluralidad                        único                              7010782    17182               2.45  0.9576               1.042                     1.008                                       0.892                                        9.2      —
+                                  triple o más                          5320      170              31.95  0.9678               1.198                     1.422                                       1.000                                       89.7      —
+                                  gemelar                             223294     2494              11.17  0.9711               1.058                     1.048                                       0.978                                       33.8      —
+cohorte                           2022                               3647067     9967               2.73  0.9598               1.032                     0.998                                       0.901                                        9.9      —
+                                  2023                               3592329     9879               2.75  0.9613               1.060                     1.024                                       0.907                                       10.1      —
+
+== Desempeño por subgrupo: intervalos de confianza del 95% (bootstrap estratificado dentro de cada subgrupo, 200 remuestreos; prueba temporal 2022-2023)
+                                                    muertes   AUROC  AUROC 2.5%  AUROC 97.5%  observado/esperado  observado/esperado 2.5%  observado/esperado 97.5%                                                       lectura
+grupo                             nivel                                                                                                                                                                                          
+raza y origen hispano de la madre Asiática              792  0.9650      0.9574       0.9739               0.956                    0.817                     1.149                                                    sin alerta
+                                  Negra                4440  0.9536      0.9487       0.9576               0.970                    0.897                     1.049                                                    sin alerta
+                                  Hispana              4913  0.9654      0.9619       0.9690               1.046                    0.977                     1.133                                                    sin alerta
+                                  Otra                  776  0.9422      0.9331       0.9538               0.969                    0.815                     1.163                                                    sin alerta
+                                  Blanca               8487  0.9584      0.9554       0.9609               1.091                    1.026                     1.153                                                    sin alerta
+                                  desconocido           438  0.9704      0.9609       0.9807               1.445                    1.196                     1.728  alerta de O/E no confirmada: el IC del 95% alcanza el límite
+pago del parto                    Medicaid             9692  0.9489      0.9464       0.9520               0.991                    0.933                     1.043                                                    sin alerta
+                                  otro                  647  0.9720      0.9649       0.9785               1.047                    0.914                     1.210                                                    sin alerta
+                                  seguro privado       8252  0.9676      0.9651       0.9702               1.100                    1.037                     1.159                                                    sin alerta
+                                  pago propio          1017  0.9616      0.9537       0.9681               1.217                    1.046                     1.410                                                    sin alerta
+                                  desconocido           238  0.9683      0.9554       0.9829               0.980                    0.638                     1.429                                                    sin alerta
+edad gestacional                  22-27 semanas        8830  0.8418      0.8252       0.8547               1.077                    1.021                     1.121                                              solo descriptivo
+                                  28-31 semanas        2365  0.9029      0.8952       0.9120               1.191                    1.096                     1.317                                              solo descriptivo
+                                  32-36 semanas        3458  0.9181      0.9121       0.9237               0.972                    0.887                     1.066                                              solo descriptivo
+                                  37 semanas o más     5193  0.8967      0.8920       0.9019               0.990                    0.942                     1.033                                              solo descriptivo
+pluralidad                        único               17182  0.9576      0.9557       0.9595               1.042                    1.007                     1.080                                                    sin alerta
+                                  triple o más          170  0.9678      0.9470       0.9852               1.198                    0.953                     1.559                                                    sin alerta
+                                  gemelar              2494  0.9711      0.9671       0.9749               1.058                    0.960                     1.166                                                    sin alerta
+cohorte                           2022                 9967  0.9598      0.9574       0.9621               1.032                    0.978                     1.083                                                    sin alerta
+                                  2023                 9879  0.9613      0.9591       0.9635               1.060                    1.016                     1.112                                                    sin alerta
+
+== Objetivo original: mejores pares sensibilidad-especificidad (prueba temporal 2022-2023)
+                                             todos los nacidos vivos vivos al inicio del día 2
+punto equilibrado: sensibilidad                                0.904                     0.856
+punto equilibrado: especificidad                               0.904                     0.856
+punto equilibrado: corte de riesgo                            0.0012                    0.0008
+especificidad cuando la sensibilidad >= 0.75                   0.992                      0.97
+sensibilidad cuando la especificidad >= 0.75                   0.946                       0.9
+algún umbral da ambas >= 0.75                                     Sí                        Sí
+
+== Contribución de cada predictor (25 principales; prueba temporal, ponderada)
+                                     media |SHAP| (log-odds)  parte del total (%) relacionado con la atención prenatal o del parto
+apgar5                                                1.2679                 40.5                                                 
+peso_al_nacer                                         0.7158                 22.9                                                 
+edad_gestacional                                      0.1418                  4.5                                                 
+parto_cesárea                                         0.0927                  3.0                                               sí
+educ_pregrado_o_más                                   0.0845                  2.7                                                 
+controles_prenatales                                  0.0811                  2.6                                               sí
+masculino                                             0.0410                  1.3                                                 
+imc                                                   0.0394                  1.3                                               sí
+control_después_primer_trimestre                      0.0391                  1.2                                               sí
+presentación_podálica                                 0.0380                  1.2                                                 
+edad                                                  0.0337                  1.1                                                 
+cardiopatía_cianótica                                 0.0317                  1.0                                                 
+hipertensión_gestacional                              0.0316                  1.0                                                 
+ganancia_de_peso                                      0.0291                  0.9                                               sí
+wic                                                   0.0275                  0.9                                               sí
+pago_medicaid                                         0.0264                  0.8                                                 
+raza_hispana                                          0.0263                  0.8                                                 
+gemelar                                               0.0261                  0.8                                                 
+nacido_fuera_del_hospital                             0.0260                  0.8                                               sí
+fumó_en_el_embarazo                                   0.0226                  0.7                                               sí
+cesárea_previa                                        0.0217                  0.7                                                 
+antibióticos_en_el_trabajo_de_parto                   0.0214                  0.7                                               sí
+hijos_vivos_previos_2_o_más                           0.0212                  0.7                                                 
+hijos_vivos_previos_1                                 0.0196                  0.6                                                 
+hijo_previo_fallecido                                 0.0181                  0.6                                                 
+
+== Parte de la contribución total por tipo de predictor (%)
+edad gestacional y peso al nacer                    27.4
+relacionado con la atención prenatal o del parto    13.5
+otro                                                59.1
+
+== Resumen: puntos de operación (prueba temporal 2022-2023)
+                            corte de riesgo       VP        FP      FN         VN  exactitud      F1  sensibilidad  especificidad     VPP      VPN  alertados por 1,000 nacimientos  alertas por muerte encontrada
+riesgo >= 1% (recomendado)           0.0100  16231.0  121150.0  3615.0  7098400.0     0.9828  0.2065        0.8178         0.9832  0.1181  0.99949                             19.0                            8.5
+1% superior del riesgo               0.0297  14818.0   57600.0  5028.0  7161950.0     0.9913  0.3212        0.7466         0.9920  0.2046  0.99930                             10.0                            4.9
+10% superior del riesgo              0.0012  17939.0  706050.0  1907.0  6513500.0     0.9022  0.0482        0.9039         0.9022  0.0248  0.99971                            100.0                           40.4
+
+== Resumen: modelo, equidad y factores
+AUROC, prueba temporal                                                                                                  0.9606
+rango del AUROC entre grupos de equidad                                                                            0.942-0.972
+subgrupos con alerta                                                      raza y origen hispano de la madre: desconocido (O/E)
+parte del riesgo: edad gestacional y peso al nacer (%)                                                                    27.4
+parte del riesgo: relacionada con la atención prenatal o del parto (%)                                                    13.5

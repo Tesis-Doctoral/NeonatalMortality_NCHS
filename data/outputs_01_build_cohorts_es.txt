@@ -1,0 +1,28 @@
+Adaptador de datos: cohortes de nacimientos construidas con los archivos de uso público NCHS Period/Cohort Linked Birth/Infant Death (solo conteos agregados)
+pob = nacidos vivos de madres residentes en EE. UU. con gestación combinada de 22-47 semanas; etiqueta principal = muerte neonatal a los 0-27 días
+
+cohorte                           2016     2017     2018     2019     2020     2021     2022     2023
+nacimientos                    3956112  3864754  3801534  3757582  3619826  3669928  3676029  3605081
+nacimientos_residentes_EEUU    3945875  3855500  3791712  3747540  3613647  3664292  3667758  3596017
+muertes_infantiles_enlazadas     22893    22167    21346    20639    19346    19965    20268    19743
+EG_desconocida                    3457     2760     2509     2407     2478     2993     2671     2642
+EG_menor_22                       4130     4182     3960     3946     3690     3537     3563     3549
+pob_22sem_o_más                3938288  3848558  3785243  3741187  3607479  3657762  3661524  3589826
+eventos_principal_pob            11497    11057    10703    10249     9574     9633     9967     9879
+eventos_primeras_24h_pob          5107     5356     5161     5136     4823     4556     4697     4620
+eventos_día1_27_pob               6390     5701     5542     5113     4751     5077     5270     5259
+eventos_neonatal_precoz_pob       8605     8222     7998     7605     7110     6988     7148     7089
+pob_28sem_o_más                3914482  3825287  3762869  3718587  3586692  3636328  3640382  3569019
+eventos_principal_28sem_o_más     5850     5741     5655     5439     5164     5232     5517     5499
+
+Enlace de las muertes infantiles con su nacimiento (el adaptador se detiene por debajo del 99%)
+         muertes infantiles de la cohorte (residentes en EE. UU.)  enlazadas con su nacimiento  % enlazadas verificación (>= 99%)
+cohorte                                                                                                                          
+2016                                                        22893                        22893        100.0                cumple
+2017                                                        22167                        22167        100.0                cumple
+2018                                                        21346                        21346        100.0                cumple
+2019                                                        20639                        20639        100.0                cumple
+2020                                                        19346                        19346        100.0                cumple
+2021                                                        19965                        19965        100.0                cumple
+2022                                                        20268                        20268        100.0                cumple
+2023                                                        19743                        19743        100.0                cumple

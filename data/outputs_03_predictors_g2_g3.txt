@@ -1,5 +1,15 @@
 Predictor table and gates G2 and G3 of the neonatal model (aggregate output only)
 
+== S5 decision: unit of analysis
+cohorts with one record per live birth                                                           8 of 8
+group = the birth itself in every cohort                                                           True
+decision                                    continue to S6 (no group can fall on both sides of a split)
+
+== S6 decision: information window
+NCHS fields read for the predictors                                                                                56
+fields recorded after birth + 5 minutes that are read                                                               0
+decision                                                 continue to S7 (only information known at birth + 5 minutes)
+
 == Q-P1 Contract table: 29829867 births, 71 parameters; % missing and mean (continuous) or % yes, whole population
                             pct_missing  mean_or_pct_yes
 age                                0.00            29.17
@@ -74,10 +84,15 @@ hypospadias                        0.15             0.06
 down_syndrome                      0.15             0.05
 chromosomal_disorder               0.15             0.04
 
+== S7 decision: missing values of the parameters
+               parameters  highest % missing                                           which                                                                                                        decision
+missing <= 3%          68               2.97                                      all others                                                 enter with median imputation, no missingness indicators (M4-D3)
+missing > 3%            3              12.67  interval_lt18, interval_18_59, interval_60plus  enter: interpregnancy interval kept in the audit (S4, M4-D2 table); complete records as a sensitivity analysis
+
 == Gate G2: design checks
 no outcome, landmark, death-certificate or post-prediction field among the predictors         True
-no missingness or imputation indicator among the predictors (M5-D3)                           True
-marital status excluded (M5-D2)                                                               True
+no missingness or imputation indicator among the predictors (M4-D3)                           True
+marital status excluded (M4-D2)                                                               True
 unit of analysis is the live birth and the group is the unit itself (no mother identifier)    True
 
 == G2 leakage check: births by number of unknown predictor fields (development cohorts)
@@ -151,6 +166,12 @@ n_unknown
 population    0.601
 ge28_weeks    0.571
 
+== G2 decision
+design checks passed                                                                                                                                                                        4 of 4
+AUROC of the number of unknowns (population / 28 weeks or more)                                                                                                                      0.601 / 0.571
+clearly above 0.50 (AUROC > 0.55)                                                                                                                                                             True
+decision                                                           G2 passes; M4-D3 and the complete-record sensitivity analysis are kept; the native-XGBoost diagnostic is checked in notebook 04
+
 == Gate G3: data (development cohorts 2016-2021)
 development births                             22578517
 development events                                62713
@@ -182,3 +203,9 @@ reassessment: gate G3                                        PASSED             
 
 == Primary learner rule (events per parameter >= 20: best base learner of a preliminary run)
 events per parameter = 883.3
+
+== G3 decision
+gate G3, planning and reassessment (main and reference)                                                                                                                                                 PASSED
+events available / required (main model, reassessment)                                                                                                                                            62,713 / 104
+events per parameter                                                                                                                                                                                     883.3
+decision                                                   G3 passes: preliminary run of the base learners (notebook 04); with 20 or more events per parameter the primary learner is the best one of that run

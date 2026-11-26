@@ -1,0 +1,138 @@
+Evaluación principal del modelo neonatal (nacimiento + 5 minutos)
+
+== Algoritmo principal (notebook 04)
+algoritmo principal                                                                                                                                                                                                       XGB
+hiperparámetros                        {"max_depth": 8, "learning_rate": 0.0211, "min_child_weight": 4.5508, "subsample": 0.8075, "colsample_bytree": 0.6844, "reg_lambda": 0.1686, "reg_alpha": 0.0074, "n_estimators": 302}
+ensamble adoptado en el notebook 04                                                                                                                                                                                        No
+
+== Datos
+                           nacimientos  muertes neonatales  filas de la muestra
+desarrollo 2016-2021          22578517               62713               512880
+prueba temporal 2022-2023      7251350               19846               164237
+
+== Validación interna: validación cruzada 3 x 5 pliegues, recalibrada (desarrollo 2016-2021)
+                                     XGB       LR  referencia (EG + peso al nacer)
+eventos en el 5% superior (%)    88.6743  88.0200                          72.5687
+eventos en el 10% superior (%)   91.4558  90.8972                          79.1904
+AUROC                             0.9643   0.9575                           0.9074
+AUPRC                             0.4917   0.4687                           0.2931
+prevalencia                       0.0028   0.0028                           0.0028
+Brier                             0.0019   0.0019                           0.0022
+pendiente de calibración          0.9773   0.9881                           0.9884
+intercepto de calibración        -0.0094  -0.0020                           0.0028
+observado/esperado                0.9942   0.9989                           1.0024
+ECE                               0.0001   0.0003                           0.0001
+AUROC 2.5%                        0.9634   0.9564                           0.9058
+AUPRC 2.5%                        0.4789   0.4530                           0.2817
+pendiente de calibración 2.5%     0.9737   0.9760                           0.9750
+intercepto de calibración 2.5%   -0.0456  -0.0371                          -0.0300
+observado/esperado 2.5%           0.9717   0.9772                           0.9765
+AUROC 97.5%                       0.9651   0.9585                           0.9086
+AUPRC 97.5%                       0.5088   0.4848                           0.3073
+pendiente de calibración 97.5%    0.9799   1.0116                           1.0059
+intercepto de calibración 97.5%   0.0131   0.0275                           0.0100
+observado/esperado 97.5%          1.0083   1.0176                           1.0081
+DE del AUROC entre repeticiones   0.0001   0.0001                           0.0001
+
+== Modelo completo menos modelo de referencia (EG + peso al nacer): diferencia de AUROC, IC 95% por bootstrap pareado
++0.0570 (+0.0557 a +0.0581)
+
+== Validación temporal: desarrollo 2016-2021, prueba única 2022-2023
+                                     XGB       LR  referencia (EG + peso al nacer)
+eventos en el 5% superior (%)    87.4584  86.6724                          70.9362
+eventos en el 10% superior (%)   90.3910  89.7864                          77.2649
+AUROC                             0.9606   0.9522                           0.8995
+AUPRC                             0.4645   0.4379                           0.2677
+prevalencia                       0.0027   0.0027                           0.0027
+Brier                             0.0019   0.0020                           0.0022
+pendiente de calibración          1.0114   1.0312                           1.0168
+intercepto de calibración         0.0663   0.0863                           0.0257
+observado/esperado                1.0455   1.0600                           1.0216
+ECE                               0.0002   0.0005                           0.0002
+AUROC 2.5%                        0.9587   0.9501                           0.8966
+AUPRC 2.5%                        0.4405   0.4096                           0.2505
+pendiente de calibración 2.5%     0.9701   0.9878                           0.9759
+intercepto de calibración 2.5%    0.0089   0.0281                          -0.0072
+observado/esperado 2.5%           1.0059   1.0187                           0.9941
+AUROC 97.5%                       0.9623   0.9540                           0.9022
+AUPRC 97.5%                       0.4893   0.4632                           0.2854
+pendiente de calibración 97.5%    1.0308   1.0567                           1.0379
+intercepto de calibración 97.5%   0.1162   0.1317                           0.0621
+observado/esperado 97.5%          1.0816   1.0935                           1.0532
+
+== Criterio C1: landmark de 48 horas sobre las predicciones fuera de pliegue del algoritmo principal (28247 muertes en los días 2-27; 34466 muertes en los días 0-1 retiradas)
+                               estimación     2.5%    97.5%
+AUROC completo                     0.9643   0.9633   0.9652
+AUROC landmark                     0.9323   0.9304   0.9341
+caída del AUROC                    0.0320   0.0308   0.0331
+ganancia AUPRC completa            0.4906   0.4745   0.5055
+ganancia AUPRC landmark            0.1268   0.1172   0.1387
+ganancia AUPRC conservada (%)     25.8357  24.6559  27.4411
+
+== Análisis de sensibilidad (algoritmo principal, predicciones fuera de pliegue del modelo ajustado una vez; observado/esperado compara las muertes de cada etiqueta con el riesgo predicho de muerte a los 0-27 días)
+                                                                                            nacimientos (ponderados)  eventos   AUROC  observado/esperado
+todos los nacimientos (principal)                                                                         22571063.0  62713.0  0.9643               0.990
+(c) 28 semanas o más                                                                                      22440981.0  33081.0  0.9356               0.978
+(a) + (c) landmark de 48 horas, 28 semanas o más                                                          22425101.0  17201.0  0.8930               0.605
+(b) muerte neonatal precoz 0-6 días vs sobrevivientes (muertes en los días 7-27 retiradas)                22554878.0  46528.0  0.9814               0.763
+cohortes 2020-2021 (pandemia)                                                                              7245657.0  19207.0  0.9635               0.943
+cohortes 2016-2019                                                                                        15325406.0  43506.0  0.9646               1.012
+registros completos (modelo principal, sin reajuste)                                                      17909865.0  37815.0  0.9594               0.943
+
+== Análisis de sensibilidad reajustados (algoritmo principal): AUROC y eventos
+                                                                          AUROC  eventos
+registros completos, reajustado (sin imputación)                         0.9595  37815.0
+landmark de 48 horas, reajustado                                         0.9332  28247.0
+28 semanas o más, reajustado                                             0.9359  33081.0
+28 semanas o más, modelo de referencia (EG + peso al nacer), reajustado  0.8290  33081.0
+
+== Puerta P4: clasificación del modelo neonatal (algoritmo principal)
+C1 eventos ya presentes                              cumple (landmark de 48 horas: caída del AUROC 0.032, IC 95% 0.031-0.033, se requiere <= 0.05; ganancia AUPRC conservada 26%, IC 95% 25-27%, reportada, no decisiva en el framework 1.3; el framework 1.2 exigía >= 67%: NO cumple)
+C2 desenlace con tiempo                                                                                                                                                                                         cumple (AUROC 0.964, IC 95% 0.963-0.965; se requiere >= 0.75 y >= 0.70)
+C3 sesgo de detección                                                                                                                                                                         no aplica (certificado de defunción; enlace de muertes con nacimientos 100%, notebook 01)
+C4 estabilidad en el tiempo                                                                                                                                                  cumple (AUROC temporal 0.961, IC 95% 0.959-0.962; pendiente 1.01, IC 95% 0.97-1.03, se requiere 0.90-1.10)
+eventos en el 10% superior vs azar                                                                                                                                                                                                                                           9.15 veces
+clasificación                                                                                                                                                                                                                                                                 PREDICTOR
+clasificación con el framework 1.2 (trazabilidad)                                                                                                                                                                                                                IDENTIFICADOR TEMPRANO
+
+== Matriz de confusión del algoritmo principal (fuera de pliegue, ponderada a la población de desarrollo)
+                 VP    FN       FP        VN  exactitud  sensibilidad  especificidad     VPP      VPN
+alertados                                                                                            
+10% superior  57366  5347  2199750  20308600     0.9023         0.915         0.9023  0.0254  0.99974
+5% superior   55625  7088  1072950  21435400     0.9521         0.887         0.9523  0.0493  0.99967
+
+== Curva de decisión (algoritmo principal)
+        beneficio neto del modelo  beneficio neto de tratar a todos  % alertados
+umbral                                                                          
+0.002                     0.00237                           0.00078         5.65
+0.005                     0.00225                          -0.00223         2.82
+0.010                     0.00213                          -0.00729         1.87
+0.020                     0.00199                          -0.01757         1.26
+0.050                     0.00171                          -0.04971         0.75
+
+== Modelo final guardado para reutilizarlo (models/)
+algoritmo                                                                                                                    XGB
+pipeline con la recalibración de Platt (joblib)                                    models/neonatal_final_model.joblib (2,712 KB)
+algoritmo en formato portable (XGBoost JSON)                                           models/neonatal_final_xgb.json (4,368 KB)
+ficha del modelo (predictores, medianas de imputación, coeficientes de Platt)       models/neonatal_final_model_card.json (5 KB)
+verificación: máx. |diferencia|, joblib recargado frente al modelo en memoria                                                0.0
+verificación: máx. |diferencia|, archivos portables frente al modelo en memoria                                              0.0
+AUROC temporal con el modelo recargado                                                                                    0.9606
+
+== Resumen: discriminación, calibración y métricas con umbral (corte del 10% superior)
+                                                           AUROC (IC 95%)  AUPRC   Brier  pendiente de calibración  observado/esperado  eventos en el 10% superior (%)  exactitud      F1  sensibilidad  especificidad     VPP      VPN
+XGB · interna 2016-2021                               0.964 (0.963-0.965)  0.492  0.0019                     0.977               0.994                            91.5     0.9023  0.0495        0.9147         0.9023  0.0254  0.99974
+XGB · temporal 2022-2023                              0.961 (0.959-0.962)  0.465  0.0019                     1.011               1.046                            90.4     0.9022  0.0482        0.9039         0.9022  0.0248  0.99971
+LR · interna 2016-2021                                0.958 (0.956-0.959)  0.469  0.0019                     0.988               0.999                            90.9     0.9023  0.0491        0.9089         0.9023  0.0253  0.99972
+LR · temporal 2022-2023                               0.952 (0.950-0.954)  0.438  0.0020                     1.031               1.060                            89.8     0.9022  0.0479        0.8979         0.9022  0.0246  0.99969
+referencia (EG + peso al nacer) · interna 2016-2021   0.907 (0.906-0.909)  0.293  0.0022                     0.988               1.002                            79.2     0.9016  0.0428        0.7916         0.9019  0.0220  0.99936
+referencia (EG + peso al nacer) · temporal 2022-2023  0.899 (0.897-0.902)  0.268  0.0022                     1.017               1.022                            77.3     0.9010  0.0410        0.7726         0.9013  0.0211  0.99931
+
+== Resumen: puerta P4
+C1 (landmark de 48 horas): caída del AUROC       0.032 (0.031-0.033)
+C1 cumple (framework 1.3)                                         Sí
+C2 cumple                                                         Sí
+C3                                                         no aplica
+C4 cumple                                                         Sí
+clasificación (framework 1.3)                              PREDICTOR
+clasificación con el framework 1.2            IDENTIFICADOR TEMPRANO

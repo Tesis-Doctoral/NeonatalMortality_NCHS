@@ -67,6 +67,22 @@ cohort
 2022              1.38            0.04
 2023              1.49            0.03
 
+== S4 decision: landmark of sensitivity analysis (a) (M4-D1)
+day-1 deaths, first vs last cohort                                                                                                                     1412 vs 425
+% of the deaths on day 1, first vs last cohort                                                                                                         12.3 vs 4.3
+relative change of that share (%)                                                                                                                            -65.0
+% of the deaths on days 0-1 together, first vs last cohort                                                                                            56.7 vs 51.1
+relative change of that share (%)                                                                                                                             -9.9
+day-1 coding stable (change within 20%)                                                                                                                      False
+decision                                                      M4-D1: landmark moved to 48 hours (days 0-1 together do not depend on how day 0 and day 1 are split)
+
+== S4 decision: gestational age
+% of births at 22-27 weeks                                                                                                   0.59
+% of deaths at 22-27 weeks                                                                                                   46.6
+consequence                                                sensitivity analysis (c) restricted to 28 weeks or more (outcome card)
+gestational age imputed by NCHS, highest cohort (%)                                                                          2.02
+consequence for the imputed values                     kept as recorded; the imputation flags stay as metadata, not as predictors
+
 == Q-N4 [mother] MRACEHISP: births and % of the population
           n    pct
 1  15262446  51.16
@@ -443,6 +459,12 @@ cohort   2016   2017   2018   2019   2020   2021   2022   2023  all_cohorts
 DMAR     0.00  12.24  12.00  11.91  11.63  11.48  11.43  11.12        10.15
 ILP_R   12.41  11.96  12.01  11.92  11.42  11.06  10.95  10.55        11.55
 
+== S4 decision: candidates with more than 5% unknown (M4-D2)
+                  % unknown, all cohorts % unknown, lowest-highest cohort  reporting change across cohorts                      decision
+DMAR                               10.15                         0.0-12.2                             True               M4-D2: excluded
+ILP_R                              11.55                        10.6-12.4                            False  enters S7 (unknowns imputed)
+other candidates                    2.97                        up to 3.6                            False                      enter S7
+
 == Q-N7 Gate G2: AUROC of the number of unknown fields alone (neonatal death 0-27 days)
                                  population  ge28_weeks
 AUROC of the number of unknowns       0.577       0.556
@@ -455,3 +477,8 @@ AUROC of the number of unknowns       0.577       0.556
 3     439077
 4     145268
 5+    258517
+
+== Preliminary G2 decision: handling of unknowns (M4-D3)
+AUROC of the number of unknowns (population / 28 weeks or more)                                                                                    0.577 / 0.556
+clearly above 0.50 (AUROC > 0.55)                                                                                                                           True
+decision                                                           M4-D3: imputation without missingness indicators, plus a complete-record sensitivity analysis

@@ -14,3 +14,15 @@ events_day1_27_pop            6390     5701     5542     5113     4751     5077 
 events_early_neonatal_pop     8605     8222     7998     7605     7110     6988     7148     7089
 pop_ge28wk                 3914482  3825287  3762869  3718587  3586692  3636328  3640382  3569019
 events_main_ge28              5850     5741     5655     5439     5164     5232     5517     5499
+
+Linkage of infant deaths to their birth (the adapter stops below 99%)
+        infant deaths of the cohort (US residents)  joined to their birth  % joined check (>= 99%)
+cohort                                                                                            
+2016                                         22893                  22893     100.0         passes
+2017                                         22167                  22167     100.0         passes
+2018                                         21346                  21346     100.0         passes
+2019                                         20639                  20639     100.0         passes
+2020                                         19346                  19346     100.0         passes
+2021                                         19965                  19965     100.0         passes
+2022                                         20268                  20268     100.0         passes
+2023                                         19743                  19743     100.0         passes

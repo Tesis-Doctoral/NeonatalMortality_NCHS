@@ -13,7 +13,7 @@ Can live births at high risk of dying in their first 28 days be identified at bi
 - **Outcome:** neonatal death (0 to 27 days of life).
 - **Population:** live births to US-resident mothers, 22 weeks of gestation or more, birth cohorts 2016 to 2023 (about 3.6 to 3.9 million births and 9,500 to 11,500 neonatal deaths per cohort).
 - **Prediction point:** 5 minutes after birth; only information known at birth.
-- **Framework:** [`framework.md`](framework.md) (Spanish: [`framework_es.md`](framework_es.md)), version 1.0. Outcome card: [`docs/outcome_card_neonatal_nchs.md`](docs/outcome_card_neonatal_nchs.md).
+- **Framework:** [StagedFramework_ClinicalPrediction](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction) (Spanish: [`README_es.md`](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction/blob/main/README_es.md)); the current version is kept only there. Outcome card: [`docs/outcome_card_neonatal_nchs.md`](docs/outcome_card_neonatal_nchs.md).
 
 ## Data
 
@@ -27,9 +27,10 @@ The *Period/Cohort Linked Birth/Infant Death* files are downloaded from https://
 | 2 | `notebooks/02_count_audit.ipynb` | `data/outputs_02_count_audit.txt` | S4 (count audit), G1, G2 check of the unknowns |
 | 3 | `notebooks/03_predictors_g2_g3.ipynb` | `data/contract/neonatal_nchs_v1/cohort_<year>.parquet` and `data/outputs_03_predictors_g2_g3.txt` | S7 (predictors), G2, G3 |
 | 4 | `notebooks/04_preliminary_learners.ipynb` | `data/outputs_04_preliminary_learners.txt` and `data/outputs_04_selection.json` | S8 (preliminary run, primary-learner rule) |
-| 5 | `notebooks/05_main_evaluation.ipynb` | `data/outputs_05_main_evaluation.txt` | S8–S9 (formal evaluation, temporal validation, sensitivities), G4 |
+| 5 | `notebooks/05_main_evaluation.ipynb` | `data/outputs_05_main_evaluation.txt` and the final model in `models/` | S8–S9 (formal evaluation, temporal validation, sensitivities), G4 |
 | 5b | `scripts/g4_framework_1_3.py` | `data/outputs_05b_g4_framework_1_3.txt` | G4 under framework 1.3 (no refit; reads the output of 05) |
 | 6 | `notebooks/06_e10_action.ipynb` | `data/outputs_06_e10_action.txt` | S10 (workload, subgroups, drivers of risk) |
+| 6b | `scripts/tripod_flow_and_periods.py` | `data/outputs_tripod_flow_periods.txt` and `figures/tripod_flow.png` | S11 (TRIPOD+AI items 20a, 20c: flow diagram and comparison of periods; reads the outputs of 01 and 05 and the contract table) |
 
 The reader is `libraries/nchs_reader.py`: it reads the fixed-width files directly from the ZIP files, with the positions of the record layout of the user guides (identical from 2016 to 2023).
 
@@ -38,9 +39,10 @@ The reader is `libraries/nchs_reader.py`: it reads the fixed-width files directl
 ```
 data/interim/    Cohorts in Parquet (not versioned)
 data/            Aggregate outputs_*.txt
-libraries/       Data adapter (fixed-width reader)
+libraries/       Data adapter (fixed-width reader); neonatal_model.py: use of the saved final model
+models/          Final model of notebook 05 (joblib pipeline, XGBoost JSON, model card); no data
 notebooks/       Adapter, count audit, models, validation and classification
-docs/            Outcome card, framework figure
+docs/            Outcome card, decisions, E10 guide and TRIPOD+AI checklist
 ```
 
 Notebooks and documents have a Spanish version with the `_es` suffix and the same code.

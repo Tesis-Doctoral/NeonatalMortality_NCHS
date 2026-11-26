@@ -1,6 +1,6 @@
 # Outcome card — neonatal mortality, NCHS
 
-Outcome card following the staged framework ([`../framework.md`](../framework.md)), version 1, 2026-11-20. Fields marked **pending** are fixed, and recorded in the decision log, before the gate that needs them. Spanish version: [`outcome_card_neonatal_nchs_es.md`](outcome_card_neonatal_nchs_es.md).
+Outcome card following the staged framework ([StagedFramework_ClinicalPrediction](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction)), version 1, 2026-11-20. Fields marked **pending** are fixed, and recorded in the decision log, before the gate that needs them. Spanish version: [`outcome_card_neonatal_nchs_es.md`](outcome_card_neonatal_nchs_es.md).
 
 ## 1. The question
 

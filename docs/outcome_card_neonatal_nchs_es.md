@@ -1,6 +1,6 @@
 # Ficha del desenlace — mortalidad neonatal, NCHS
 
-Ficha del desenlace según el framework por etapas ([`../framework_es.md`](../framework_es.md)), versión 1, 20/11/2026. Los campos marcados **pendiente** se fijan, y se registran en el libro de decisiones, antes de la puerta que los necesita. Versión en inglés: [`outcome_card_neonatal_nchs.md`](outcome_card_neonatal_nchs.md).
+Ficha del desenlace según el framework por etapas ([StagedFramework_ClinicalPrediction](https://github.com/Tesis-Doctoral/StagedFramework_ClinicalPrediction/blob/main/README_es.md)), versión 1, 20/11/2026. Los campos marcados **pendiente** se fijan, y se registran en el libro de decisiones, antes de la puerta que los necesita. Versión en inglés: [`outcome_card_neonatal_nchs.md`](outcome_card_neonatal_nchs.md).
 
 ## 1. La pregunta
 

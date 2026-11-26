@@ -39,7 +39,7 @@ Alertas fijadas antes de correr: AUROC más de 0,05 por debajo del total (por de
 | Cohorte 2022 / 2023 | 0,960 / 0,961 | 1,03 / 1,06 | 0,90 / 0,91 |
 
 - **Ningún grupo tiene alerta de discriminación.** Los AUROC más bajos (raza "otra" 0,942; Medicaid 0,949; madres negras 0,954) siguen muy por encima del límite.
-- **Calibración:** una sola alerta, en las madres con raza desconocida (O/E 1,45, unos 64.000 nacimientos): el modelo subestima su riesgo. La falta del dato puede reflejar registros incompletos de partos con más riesgo; conviene revisarlo localmente antes de usar el modelo.
+- **Calibración:** una sola alerta, en las madres con raza desconocida (O/E 1,45, unos 64.000 nacimientos): el modelo subestima su riesgo. Su IC 95% por bootstrap (1,20–1,73) alcanza el límite de 1,25, así que la alerta se reporta como no confirmada (imprecisa); todos los subgrupos tienen un límite inferior del AUROC de 0,93 o más (notebook 06). La falta del dato puede reflejar registros incompletos de partos con más riesgo; conviene revisarlo localmente antes de usar el modelo.
 - **Proporción marcada:** se marca más a las madres negras (16,1%) que a las blancas (9,1%). Corresponde a su mayor mortalidad neonatal (4,4 frente a 2,3 por 1.000), con la misma calibración, así que no indica un sesgo del modelo sino una diferencia real de riesgo.
 
 ## 4. Qué impulsa el riesgo (descriptivo, no causal)

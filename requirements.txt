@@ -1,8 +1,12 @@
-numpy
-pandas
-pyarrow
-scikit-learn
-xgboost
-lightgbm
-matplotlib
-ipykernel
+# Exact versions of the environment that ran the notebooks (Python 3.11.9, Windows; .venv of this repository).
+# Install with: pip install -r requirements.txt
+numpy==2.4.6
+pandas==3.1.1
+pyarrow==26.0.1
+scipy==1.17.1
+scikit-learn==1.9.1
+xgboost==3.2.0
+lightgbm==4.7.0
+joblib==1.6.0
+matplotlib==3.11.2
+ipykernel==7.4.0

@@ -57,6 +57,30 @@ plurality                         singleton                    7010782   17182  
 cohort                            2022                         3647067    9967              2.73  0.9598              1.032              0.998                       0.901                       9.9    —
                                   2023                         3592329    9879              2.75  0.9613              1.060              1.024                       0.907                      10.1    —
 
+== Performance by subgroup: 95% confidence intervals (stratified bootstrap inside each subgroup, 200 resamples; temporal test 2022-2023)
+                                                     deaths   AUROC  AUROC 2.5%  AUROC 97.5%  observed/expected  observed/expected 2.5%  observed/expected 97.5%                                               reading
+group                             level                                                                                                                                                                               
+mother's race and Hispanic origin Asian                 792  0.9650      0.9574       0.9739              0.956                   0.817                    1.149                                               no flag
+                                  Black                4440  0.9536      0.9487       0.9576              0.970                   0.897                    1.049                                               no flag
+                                  Hispanic             4913  0.9654      0.9619       0.9690              1.046                   0.977                    1.133                                               no flag
+                                  Other                 776  0.9422      0.9331       0.9538              0.969                   0.815                    1.163                                               no flag
+                                  White                8487  0.9584      0.9554       0.9609              1.091                   1.026                    1.153                                               no flag
+                                  unknown               438  0.9704      0.9609       0.9807              1.445                   1.196                    1.728  O/E flag not confirmed: the 95% CI reaches the limit
+payment of the delivery           Medicaid             9692  0.9489      0.9464       0.9520              0.991                   0.933                    1.043                                               no flag
+                                  other                 647  0.9720      0.9649       0.9785              1.047                   0.914                    1.210                                               no flag
+                                  private insurance    8252  0.9676      0.9651       0.9702              1.100                   1.037                    1.159                                               no flag
+                                  self-pay             1017  0.9616      0.9537       0.9681              1.217                   1.046                    1.410                                               no flag
+                                  unknown               238  0.9683      0.9554       0.9829              0.980                   0.638                    1.429                                               no flag
+gestational age                   22-27 weeks          8830  0.8418      0.8252       0.8547              1.077                   1.021                    1.121                                      descriptive only
+                                  28-31 weeks          2365  0.9029      0.8952       0.9120              1.191                   1.096                    1.317                                      descriptive only
+                                  32-36 weeks          3458  0.9181      0.9121       0.9237              0.972                   0.887                    1.066                                      descriptive only
+                                  37 weeks or more     5193  0.8967      0.8920       0.9019              0.990                   0.942                    1.033                                      descriptive only
+plurality                         singleton           17182  0.9576      0.9557       0.9595              1.042                   1.007                    1.080                                               no flag
+                                  triplet or more       170  0.9678      0.9470       0.9852              1.198                   0.953                    1.559                                               no flag
+                                  twin                 2494  0.9711      0.9671       0.9749              1.058                   0.960                    1.166                                               no flag
+cohort                            2022                 9967  0.9598      0.9574       0.9621              1.032                   0.978                    1.083                                               no flag
+                                  2023                 9879  0.9613      0.9591       0.9635              1.060                   1.016                    1.112                                               no flag
+
 == Original objective: best sensitivity-specificity pairs (temporal test 2022-2023)
                                      all live births alive at the start of day 2
 balanced point: sensitivity                    0.904                       0.856
@@ -98,3 +122,16 @@ prior_child_died                            0.0181                 0.6
 gestational age and birthweight         27.4
 related to prenatal or delivery care    13.5
 other                                   59.1
+
+== Summary: operating points (temporal test 2022-2023)
+                          risk cut       TP        FP      FN         TN  accuracy      F1  sensitivity  specificity     PPV      NPV  flagged per 1,000 births  alerts per death found
+risk >= 1% (recommended)    0.0100  16231.0  121150.0  3615.0  7098400.0    0.9828  0.2065       0.8178       0.9832  0.1181  0.99949                      19.0                     8.5
+top 1% of risk              0.0297  14818.0   57600.0  5028.0  7161950.0    0.9913  0.3212       0.7466       0.9920  0.2046  0.99930                      10.0                     4.9
+top 10% of risk             0.0012  17939.0  706050.0  1907.0  6513500.0    0.9022  0.0482       0.9039       0.9022  0.0248  0.99971                     100.0                    40.4
+
+== Summary: model, equity and drivers
+AUROC, temporal test                                                                                 0.9606
+AUROC range across equity groups                                                                0.942-0.972
+subgroups flagged                                          mother's race and Hispanic origin: unknown (O/E)
+share of risk: gestational age and birthweight (%)                                                     27.4
+share of risk: related to prenatal or delivery care (%)                                                13.5

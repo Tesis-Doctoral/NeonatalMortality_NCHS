@@ -39,7 +39,7 @@ Flags fixed before running: AUROC more than 0.05 below the whole population (bel
 | Cohort 2022 / 2023 | 0.960 / 0.961 | 1.03 / 1.06 | 0.90 / 0.91 |
 
 - **No group has a discrimination flag.** The lowest AUROCs (race "other" 0.942; Medicaid 0.949; Black mothers 0.954) remain well above the limit.
-- **Calibration:** one flag, for mothers with unknown race (O/E 1.45, about 64,000 births): the model underestimates their risk. The missing value may reflect incomplete records of higher-risk deliveries; it should be checked locally before use.
+- **Calibration:** one flag, for mothers with unknown race (O/E 1.45, about 64,000 births): the model underestimates their risk. Its 95% bootstrap CI (1.20–1.73) reaches the 1.25 limit, so the flag is reported as not confirmed (imprecise); every subgroup has a lower AUROC limit of 0.93 or more (notebook 06). The missing value may reflect incomplete records of higher-risk deliveries; it should be checked locally before use.
 - **Share flagged:** Black mothers are flagged more often (16.1%) than White mothers (9.1%). This matches their higher neonatal mortality (4.4 vs 2.3 per 1,000) with the same calibration, so it reflects a real difference in risk rather than a bias of the model.
 
 ## 4. What drives the risk (descriptive, not causal)
